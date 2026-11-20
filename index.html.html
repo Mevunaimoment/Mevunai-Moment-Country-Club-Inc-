@@ -1,0 +1,1267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#5c0a18" id="themeColorMeta" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <title>Mevunai Moment™ Country Club, Inc ® | MM'EL</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="icon" type="image/png" href="mmel-icon.png" />
+  <link rel="apple-touch-icon" href="mmel-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-deep: #1a0308;
+      --bg-primary: #3b0611;
+      --bg-secondary: #5c0a18;
+      --card-bg: rgba(24, 3, 8, 0.88);
+      --gold-bright: #f9e08e;
+      --gold-mid: #d4af37;
+      --gold-dark: #8a6618;
+      --text-main: #fdf6e7;
+      --text-muted: #d8c39e;
+      --border-gold: rgba(212, 175, 55, 0.45);
+      --glow-gold: rgba(212, 175, 55, 0.25);
+    }
+
+    body.emerald-theme {
+      --bg-deep: #02140d;
+      --bg-primary: #062b1d;
+      --bg-secondary: #0b4730;
+      --card-bg: rgba(3, 22, 15, 0.88);
+      --border-gold: rgba(212, 175, 55, 0.5);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: var(--bg-deep);
+      background-image:
+        radial-gradient(circle at 50% 0%, var(--bg-secondary) 0%, var(--bg-primary) 45%, var(--bg-deep) 100%),
+        repeating-linear-gradient(45deg, rgba(212, 175, 55, 0.03) 0px, rgba(212, 175, 55, 0.03) 1px, transparent 1px, transparent 28px),
+        repeating-linear-gradient(-45deg, rgba(212, 175, 55, 0.03) 0px, rgba(212, 175, 55, 0.03) 1px, transparent 1px, transparent 28px);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, .serif {
+      font-family: 'Cinzel', serif;
+      letter-spacing: 0.06em;
+    }
+
+    /* Header */
+    .top-bar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: linear-gradient(180deg, rgba(15, 2, 5, 0.96) 0%, rgba(28, 4, 9, 0.92) 100%);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-gold);
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+    }
+
+    body.emerald-theme .top-bar {
+      background: linear-gradient(180deg, rgba(2, 18, 12, 0.96) 0%, rgba(5, 34, 23, 0.92) 100%);
+    }
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-logo {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      border: 1.5px solid var(--gold-mid);
+      object-fit: cover;
+      box-shadow: 0 0 12px var(--glow-gold);
+    }
+
+    .brand-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--gold-bright);
+      line-height: 1.1;
+    }
+
+    .brand-sub {
+      font-size: 0.6rem;
+      color: var(--gold-mid);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .theme-btn {
+      background: linear-gradient(135deg, rgba(212, 175, 55, 0.18), rgba(138, 102, 24, 0.25));
+      border: 1px solid var(--gold-mid);
+      color: var(--gold-bright);
+      font-family: 'Cinzel', serif;
+      font-size: 0.68rem;
+      font-weight: 600;
+      padding: 6px 10px;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    .theme-btn:active {
+      transform: scale(0.95);
+    }
+
+    /* Main Container */
+    .app-container {
+      flex: 1;
+      max-width: 520px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 16px 14px 96px;
+    }
+
+    .tab-section {
+      display: none;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .tab-section.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Luxury Card */
+    .lux-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-gold);
+      border-radius: 18px;
+      padding: 16px;
+      margin-bottom: 14px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.55), inset 0 0 18px rgba(212, 175, 55, 0.06);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .lux-card::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold-bright), transparent);
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-size: 1rem;
+      color: var(--gold-bright);
+      font-weight: 700;
+    }
+
+    .live-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(180, 15, 35, 0.3);
+      border: 1px solid #ff4d6d;
+      color: #ffccd5;
+      font-size: 0.62rem;
+      font-weight: 600;
+      padding: 3px 9px;
+      border-radius: 12px;
+      letter-spacing: 0.1em;
+    }
+
+    .live-dot {
+      width: 6px;
+      height: 6px;
+      background: #ff4d6d;
+      border-radius: 50%;
+      animation: pulse 1.4s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.35; transform: scale(0.8); }
+    }
+
+    /* Radio Turntable */
+    .turntable-wrap {
+      position: relative;
+      width: 190px;
+      height: 190px;
+      margin: 8px auto 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .vinyl-disc {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle, transparent 28%, rgba(212, 175, 55, 0.14) 29%, transparent 30%),
+        radial-gradient(circle, transparent 42%, rgba(212, 175, 55, 0.12) 43%, transparent 44%),
+        radial-gradient(circle, transparent 56%, rgba(212, 175, 55, 0.14) 57%, transparent 58%),
+        radial-gradient(circle at 30% 30%, #2a2a2a 0%, #0d0d0d 65%, #050505 100%);
+      border: 3px solid var(--gold-mid);
+      box-shadow: 0 0 25px rgba(0, 0, 0, 0.85), 0 0 15px var(--glow-gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: spin 10s linear infinite;
+      animation-play-state: paused;
+    }
+
+    .vinyl-disc.spinning {
+      animation-play-state: running;
+    }
+
+    @keyframes spin {
+      100% { transform: rotate(360deg); }
+    }
+
+    .vinyl-center {
+      width: 66px;
+      height: 66px;
+      border-radius: 50%;
+      border: 2px solid var(--gold-bright);
+      overflow: hidden;
+      background: var(--bg-primary);
+    }
+
+    .vinyl-center img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .tonearm {
+      position: absolute;
+      top: 4px;
+      right: 8px;
+      width: 12px;
+      height: 105px;
+      background: linear-gradient(90deg, var(--gold-dark), var(--gold-bright), var(--gold-dark));
+      border-radius: 6px;
+      transform-origin: top center;
+      transform: rotate(-22deg);
+      transition: transform 0.6s ease;
+      box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.7);
+    }
+
+    .tonearm.engaged {
+      transform: rotate(12deg);
+    }
+
+    .station-info {
+      text-align: center;
+      margin-bottom: 12px;
+    }
+
+    .station-freq {
+      font-size: 0.65rem;
+      color: var(--gold-mid);
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .station-name {
+      font-size: 1.15rem;
+      color: var(--gold-bright);
+      margin: 4px 0;
+    }
+
+    .station-host {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    /* Equalizer */
+    .eq-bars {
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      gap: 4px;
+      height: 24px;
+      margin: 10px 0 14px;
+    }
+
+    .eq-bar {
+      width: 4px;
+      height: 5px;
+      background: linear-gradient(180deg, var(--gold-bright), var(--gold-dark));
+      border-radius: 2px;
+      transition: height 0.15s ease;
+    }
+
+    /* Controls */
+    .player-controls {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+      margin-bottom: 14px;
+    }
+
+    .ctrl-btn {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: rgba(212, 175, 55, 0.12);
+      border: 1px solid var(--gold-mid);
+      color: var(--gold-bright);
+      font-size: 0.9rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .play-btn {
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--gold-bright), var(--gold-mid), var(--gold-dark));
+      border: 2px solid #fff3c4;
+      color: #1c0508;
+      font-size: 1.2rem;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 0 20px var(--glow-gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Station List */
+    .station-grid {
+      display: grid;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .station-item {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(212, 175, 55, 0.25);
+      border-radius: 12px;
+      padding: 10px 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .station-item.active {
+      background: rgba(212, 175, 55, 0.16);
+      border-color: var(--gold-bright);
+    }
+
+    .station-item-title {
+      font-family: 'Cinzel', serif;
+      font-size: 0.84rem;
+      color: var(--gold-bright);
+      font-weight: 600;
+    }
+
+    .station-item-sub {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+    }
+
+    /* Inputs & Buttons */
+    .lux-input, .lux-select {
+      width: 100%;
+      background: rgba(10, 2, 4, 0.75);
+      border: 1px solid var(--border-gold);
+      border-radius: 10px;
+      padding: 10px 12px;
+      color: var(--text-main);
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.8rem;
+      margin-bottom: 8px;
+    }
+
+    .gold-btn {
+      width: 100%;
+      background: linear-gradient(135deg, var(--gold-bright), var(--gold-mid));
+      color: #1a0308;
+      border: none;
+      border-radius: 10px;
+      padding: 10px 14px;
+      font-family: 'Cinzel', serif;
+      font-weight: 700;
+      font-size: 0.8rem;
+      letter-spacing: 0.06em;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+    }
+
+    .gold-btn:active {
+      transform: scale(0.98);
+    }
+
+    /* TV Video Box */
+    .tv-frame {
+      position: relative;
+      width: 100%;
+      padding-top: 56.25%;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1.5px solid var(--gold-mid);
+      background: #000;
+      margin-bottom: 12px;
+    }
+
+    .tv-frame iframe {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .channel-pills {
+      display: flex;
+      gap: 6px;
+      overflow-x: auto;
+      padding-bottom: 6px;
+      margin-bottom: 10px;
+    }
+
+    .pill-btn {
+      white-space: nowrap;
+      background: rgba(212, 175, 55, 0.1);
+      border: 1px solid var(--border-gold);
+      color: var(--gold-bright);
+      padding: 6px 12px;
+      border-radius: 16px;
+      font-size: 0.72rem;
+      font-family: 'Cinzel', serif;
+      cursor: pointer;
+    }
+
+    .pill-btn.active {
+      background: var(--gold-mid);
+      color: #1a0308;
+      font-weight: 700;
+    }
+
+    /* Chat Feed */
+    .chat-box {
+      max-height: 130px;
+      overflow-y: auto;
+      background: rgba(0, 0, 0, 0.35);
+      border: 1px solid rgba(212, 175, 55, 0.2);
+      border-radius: 10px;
+      padding: 8px 10px;
+      margin-bottom: 8px;
+      font-size: 0.75rem;
+    }
+
+    .chat-msg {
+      margin-bottom: 6px;
+      line-height: 1.35;
+    }
+
+    .chat-user {
+      color: var(--gold-bright);
+      font-weight: 600;
+    }
+
+    /* Boutique & Marina Items */
+    .catalog-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(212, 175, 55, 0.18);
+    }
+
+    .catalog-item:last-child {
+      border-bottom: none;
+    }
+
+    .item-tag {
+      font-size: 0.62rem;
+      color: var(--gold-mid);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .item-title {
+      font-family: 'Cinzel', serif;
+      font-size: 0.9rem;
+      color: var(--gold-bright);
+      margin: 2px 0;
+    }
+
+    .item-desc {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+    }
+
+    .small-action {
+      background: rgba(212, 175, 55, 0.15);
+      border: 1px solid var(--gold-mid);
+      color: var(--gold-bright);
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-family: 'Cinzel', serif;
+      font-size: 0.7rem;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+      margin-left: 10px;
+    }
+
+    .small-action.booked {
+      background: var(--gold-mid);
+      color: #1a0308;
+    }
+
+    /* Member Pass Card */
+    .sovereign-pass {
+      background: linear-gradient(135deg, #4d0815 0%, #1d0308 55%, #3a0610 100%);
+      border: 2px solid var(--gold-bright);
+      border-radius: 18px;
+      padding: 20px;
+      position: relative;
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.75), inset 0 0 25px rgba(212, 175, 55, 0.2);
+      margin-bottom: 14px;
+    }
+
+    body.emerald-theme .sovereign-pass {
+      background: linear-gradient(135deg, #0b4730 0%, #031710 55%, #073221 100%);
+    }
+
+    .pass-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 18px;
+    }
+
+    .pass-crest {
+      width: 54px;
+      height: 54px;
+      border-radius: 12px;
+      border: 1.5px solid var(--gold-bright);
+    }
+
+    .pass-tier {
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      color: var(--gold-bright);
+      text-transform: uppercase;
+    }
+
+    .pass-holder {
+      font-family: 'Cinzel', serif;
+      font-size: 1.15rem;
+      color: #fff;
+      font-weight: 700;
+      margin: 4px 0;
+    }
+
+    .pass-meta {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.7rem;
+      color: var(--gold-mid);
+      border-top: 1px solid rgba(212, 175, 55, 0.3);
+      padding-top: 10px;
+      margin-top: 12px;
+    }
+
+    /* Footer Trademark */
+    .trademark-footer {
+      text-align: center;
+      font-family: 'Cinzel', serif;
+      font-size: 0.68rem;
+      color: var(--gold-mid);
+      letter-spacing: 0.08em;
+      padding: 12px 8px 6px;
+      opacity: 0.9;
+    }
+
+    /* Bottom Navigation */
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 60;
+      background: rgba(14, 2, 5, 0.97);
+      backdrop-filter: blur(14px);
+      border-top: 1px solid var(--border-gold);
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      padding: 6px 2px 10px;
+    }
+
+    body.emerald-theme .bottom-nav {
+      background: rgba(2, 16, 11, 0.97);
+    }
+
+    .nav-item {
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
+      font-size: 0.58rem;
+      font-family: 'Cinzel', serif;
+      cursor: pointer;
+      padding: 4px 2px;
+    }
+
+    .nav-item.active {
+      color: var(--gold-bright);
+      font-weight: 700;
+    }
+
+    .nav-icon {
+      font-size: 1.05rem;
+    }
+
+    /* Toast */
+    .toast {
+      position: fixed;
+      top: 72px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(135deg, var(--gold-bright), var(--gold-mid));
+      color: #1a0308;
+      font-family: 'Cinzel', serif;
+      font-weight: 700;
+      font-size: 0.74rem;
+      padding: 9px 16px;
+      border-radius: 20px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.7);
+      z-index: 100;
+      display: none;
+      white-space: nowrap;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="toast" class="toast">Concierge Request Confirmed</div>
+
+  <!-- Top Header -->
+  <header class="top-bar">
+    <div class="brand-group">
+      <img src="mmel-icon.png" alt="MMEL Crest" class="brand-logo" />
+      <div>
+        <div class="brand-title serif">MM'EL PORTAL</div>
+        <div class="brand-sub">Sovereign Network</div>
+      </div>
+    </div>
+    <button class="theme-btn" id="themeToggle" onclick="toggleTheme()">Emerald Gala</button>
+  </header>
+
+  <main class="app-container">
+
+    <!-- TAB 1: MM'EL RADIO -->
+    <section id="tab-radio" class="tab-section active">
+      <div class="lux-card">
+        <div class="section-header">
+          <span class="section-title serif">MM'EL RADIO</span>
+          <span class="live-badge"><span class="live-dot"></span> ON AIR</span>
+        </div>
+
+        <div class="turntable-wrap">
+          <div id="vinylDisc" class="vinyl-disc">
+            <div class="vinyl-center">
+              <img src="mmel-icon.png" alt="MMEL Vinyl" />
+            </div>
+          </div>
+          <div id="tonearm" class="tonearm"></div>
+        </div>
+
+        <div class="station-info">
+          <div id="stationFreq" class="station-freq">CH 01 • 104.8 FM SOVEREIGN</div>
+          <h2 id="stationName" class="station-name serif">Crimson Silk Atrium Lounge</h2>
+          <div id="stationHost" class="station-host">Hosted by DJ Pharaoh • Live from Flagship</div>
+        </div>
+
+        <div id="eqBars" class="eq-bars"></div>
+
+        <div class="player-controls">
+          <button class="ctrl-btn" onclick="prevStation()" aria-label="Previous">&#9664;&#9664;</button>
+          <button id="playBtn" class="play-btn" onclick="togglePlay()" aria-label="Play or Pause">&#9654;</button>
+          <button class="ctrl-btn" onclick="nextStation()" aria-label="Next">&#9654;&#9654;</button>
+        </div>
+
+        <div class="station-grid" id="stationList"></div>
+      </div>
+
+      <div class="lux-card">
+        <div class="section-header">
+          <span class="section-title serif">Custom Live Stream URL</span>
+        </div>
+        <input type="url" id="customAudioUrl" class="lux-input" placeholder="Paste direct .mp3 or Icecast radio stream URL..." />
+        <button class="gold-btn" onclick="loadCustomAudio()">Broadcast Custom Stream</button>
+      </div>
+    </section>
+
+    <!-- TAB 2: MEVUNAI MOMENT TV -->
+    <section id="tab-tv" class="tab-section">
+      <div class="lux-card">
+        <div class="section-header">
+          <span class="section-title serif">MEVUNAI MOMENT TV</span>
+          <span class="live-badge"><span class="live-dot"></span> LIVE HD</span>
+        </div>
+
+        <div class="channel-pills" id="tvChannelPills"></div>
+
+        <div class="tv-frame">
+          <iframe id="tvPlayer" src="https://www.youtube.com/embed/jfKfPfyJRdk?autoplay=0&rel=0" title="Mevunai Moment TV" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+
+        <div style="font-size:0.75rem; color:var(--gold-bright); margin-bottom:10px;" id="tvNowPlaying">
+          Now Airing: Sovereign Lounge 24/7 Visual Broadcast
+        </div>
+
+        <input type="text" id="customVideoUrl" class="lux-input" placeholder="Paste YouTube video or live stream link..." />
+        <button class="gold-btn" onclick="loadCustomVideo()">Switch TV Feed</button>
+      </div>
+
+      <div class="lux-card">
+        <div class="section-header">
+          <span class="section-title serif">VIP Lounge Chat</span>
+        </div>
+        <div class="chat-box" id="tvChatBox">
+          <div class="chat-msg"><span class="chat-user">Sovereign_01:</span> Welcome to the Mevunai Moment TV broadcast.</div>
+          <div class="chat-msg"><span class="chat-user">Lady_Aurelia:</span> Crimson silk studio looks immaculate tonight.</div>
+          <div class="chat-msg"><span class="chat-user">Capt_Vance:</span> Touching down at the private terminal in 15 mins.</div>
+        </div>
+        <div style="display:flex; gap:6px;">
+          <input type="text" id="chatInput" class="lux-input" style="margin-bottom:0;" placeholder="Message VIP members..." />
+          <button class="small-action" style="margin-left:0;" onclick="sendChat()">Send</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 3: FLAGSHIP ATELIER BOUTIQUE -->
+    <section id="tab-boutique" class="tab-section">
+      <div class="lux-card">
+        <div class="section-header">
+          <span class="section-title serif">FLAGSHIP ATELIER</span>
+        </div>
+        <label style="font-size:0.72rem; color:var(--text-muted); display:block; margin-bottom:4px;">Select Bespoke Colorway</label>
+        <select id="atelierColorway" class="lux-select">
+          <option value="Royal Crimson Silk & Gold">Royal Crimson Silk & Brushed Gold</option>
+          <option value="Imperial Emerald & Gold">Imperial Emerald Velvet & Gold</option>
+          <option value="Ivory Gala & Gold">Ivory-White Gala & Gold</option>
+        </select>
+
+        <div id="boutiqueCatalog"></div>
+      </div>
+    </section>
+
+    <!-- TAB 4: GOLF & YACHT MARINA -->
+    <section id="tab-marina" class="tab-section">
+      <div class="lux-card">
+        <div class="section-header">
+          <span class="section-title serif">GOLF & YACHT MARINA</span>
+        </div>
+        <div id="marinaCatalog"></div>
+      </div>
+    </section>
+
+    <!-- TAB 5: VIP GALA & FLEET -->
+    <section id="tab-events" class="tab-section">
+      <div class="lux-card">
+        <div class="section-header">
+          <span class="section-title serif">VIP GALA CALENDAR</span>
+        </div>
+        <div id="eventsCatalog"></div>
+      </div>
+
+      <div class="lux-card">
+        <div class="section-header">
+          <span class="section-title serif">FLEET & AVIATION DISPATCH</span>
+        </div>
+        <select id="fleetVehicle" class="lux-select">
+          <option value="Rolls-Royce Phantom (MMEL Livery)">Rolls-Royce Phantom • Sovereign Livery</option>
+          <option value="Mercedes-Maybach S680">Mercedes-Maybach S680 • Executive</option>
+          <option value="G-Wagon Brabus Security Escort">G-Wagon Brabus • VIP Convoy</option>
+          <option value="MMCC Custom Superbike">MMCC Custom Superbike • Track Ready</option>
+          <option value="Gulfstream G650ER Private Jet">Gulfstream G650ER • Tarmac Standby</option>
+        </select>
+        <input type="text" id="fleetLocation" class="lux-input" placeholder="Pickup location or terminal gate..." />
+        <button class="gold-btn" onclick="dispatchFleet()">Request Priority Dispatch</button>
+      </div>
+    </section>
+
+    <!-- TAB 6: SOVEREIGN MEMBER PASS -->
+    <section id="tab-pass" class="tab-section">
+      <div class="sovereign-pass">
+        <div class="pass-top">
+          <div>
+            <div class="pass-tier">Founder's Sovereign Circle</div>
+            <div id="displayMemberName" class="pass-holder">SOVEREIGN FOUNDER</div>
+            <div style="font-size:0.72rem; color:var(--gold-bright);">Seat #001 / 050 • Lifetime Access</div>
+          </div>
+          <img src="mmel-icon.png" alt="MMEL Crest" class="pass-crest" />
+        </div>
+        <div style="font-size:0.72rem; color:var(--text-muted); line-height:1.45;">
+          Grants 24/7 priority private aviation dispatch, Flagship Atelier bespoke commissions, MM'EL broadcast studio clearance, and Royal Marina berth privileges.
+        </div>
+        <div class="pass-meta">
+          <span>ID: MMEL-888-001</span>
+          <span>STATUS: ACTIVE</span>
+        </div>
+      </div>
+
+      <div class="lux-card">
+        <div class="section-header">
+          <span class="section-title serif">Personalize Member Pass</span>
+        </div>
+        <input type="text" id="memberNameInput" class="lux-input" placeholder="Enter your full name or title..." />
+        <button class="gold-btn" onclick="updateMemberName()">Engrave Pass Name</button>
+      </div>
+    </section>
+
+    <div class="trademark-footer">
+      mevunai Moment™ Country Club, Inc ®
+    </div>
+
+  </main>
+
+  <!-- Bottom Navigation -->
+  <nav class="bottom-nav">
+    <button class="nav-item active" onclick="switchTab('radio', this)">
+      <span class="nav-icon">&#127911;</span>
+      <span>Radio</span>
+    </button>
+    <button class="nav-item" onclick="switchTab('tv', this)">
+      <span class="nav-icon">&#128250;</span>
+      <span>MMTV</span>
+    </button>
+    <button class="nav-item" onclick="switchTab('boutique', this)">
+      <span class="nav-icon">&#128084;</span>
+      <span>Atelier</span>
+    </button>
+    <button class="nav-item" onclick="switchTab('marina', this)">
+      <span class="nav-icon">&#9973;</span>
+      <span>Marina</span>
+    </button>
+    <button class="nav-item" onclick="switchTab('events', this)">
+      <span class="nav-icon">&#128197;</span>
+      <span>VIP/Fleet</span>
+    </button>
+    <button class="nav-item" onclick="switchTab('pass', this)">
+      <span class="nav-icon">&#128081;</span>
+      <span>Pass</span>
+    </button>
+  </nav>
+
+  <audio id="liveAudioPlayer" crossorigin="anonymous"></audio>
+
+  <script>
+    // Pre-loaded Real Streams & Stations (Working Public Audio + Ambient Synth Fallback)
+    const stations = [
+      {
+        freq: "CH 01 • 104.8 FM SOVEREIGN",
+        name: "Crimson Silk Atrium Lounge",
+        host: "Hosted by DJ Pharaoh • Live from Flagship",
+        streamUrl: "https://ice1.somafm.com/groovesalad-128-mp3",
+        baseFreq: 110
+      },
+      {
+        freq: "CH 02 • 98.4 FM AVIATION",
+        name: "Private Jet Midnight",
+        host: "Curated by Captain Vance • In-Flight Mix",
+        streamUrl: "https://ice1.somafm.com/dronezone-128-mp3",
+        baseFreq: 130.81
+      },
+      {
+        freq: "CH 03 • 107.2 FM MOTORSPORT",
+        name: "Superbike Syndicate",
+        host: "Hosted by Nico Rossi • Midnight Paddock",
+        streamUrl: "https://ice1.somafm.com/defcon-128-mp3",
+        baseFreq: 146.83
+      },
+      {
+        freq: "CH 04 • 91.6 FM ROYAL GALA",
+        name: "Pharaoh's Velvet Symphony",
+        host: "Orchestral & Neo-Classical Gala Broadcast",
+        streamUrl: "https://ice1.somafm.com/lush-128-mp3",
+        baseFreq: 164.81
+      }
+    ];
+
+    // Pre-loaded Real YouTube Channels for Mevunai Moment TV
+    const tvChannels = [
+      {
+        label: "Ch 1: Atrium Lounge",
+        title: "Sovereign Lounge 24/7 Visual Broadcast",
+        embedUrl: "https://www.youtube.com/embed/jfKfPfyJRdk?autoplay=1&rel=0"
+      },
+      {
+        label: "Ch 2: Yacht & Coast",
+        title: "Royal Marina & Superyacht Horizon Live",
+        embedUrl: "https://www.youtube.com/embed/4xDzrJKXOOY?autoplay=1&rel=0"
+      },
+      {
+        label: "Ch 3: Luxury Jazz",
+        title: "Midnight Velvet & Grand Piano Sessions",
+        embedUrl: "https://www.youtube.com/embed/Dx5qFachd3A?autoplay=1&rel=0"
+      }
+    ];
+
+    const boutiqueItems = [
+      { tag: "Sovereign Couture", title: "1325 Sacred Geometry Blazer", desc: "Hand-embroidered gold circuit & RA crest tailoring." },
+      { tag: "Motorsport Division", title: "MMCC Armored Superbike Suit", desc: "Custom leather & brushed gold hardware racing gear." },
+      { tag: "Horology", title: "Pharaoh Tourbillon Chronograph", desc: "18k gold bezel with emerald or crimson dial." },
+      { tag: "Aviation Luggage", title: "Tarmac Weekender Trunk Set", desc: "Pebble-grain leather with engraved gold locks." }
+    ];
+
+    const marinaItems = [
+      { tag: "Championship Course", title: "Sovereign 18-Hole Private Tee Time", desc: "Includes gold-trimmed cart & personal caddie." },
+      { tag: "Royal Marina", title: "120ft MMEL Superyacht Charter", desc: "Full crew, helipad clearance & sunset catering." },
+      { tag: "Private Pier", title: "VIP Yacht Berth Reservation", desc: "24/7 security detail & direct Rolls-Royce dockside transfer." }
+    ];
+
+    const eventItems = [
+      { tag: "Black Tie Gala", title: "The Crimson & Gold Coronation Ball", desc: "Grand Marble Atrium • Saturday, 9:00 PM" },
+      { tag: "Aviation & Track", title: "Tarmac Superbike & Jet Invitational", desc: "Private Hangar 01 • Next Friday, 4:00 PM" },
+      { tag: "Marina Regatta", title: "Midnight Sovereign Yacht Soirée", desc: "Pier One • Sunday, 8:00 PM" }
+    ];
+
+    let currentStationIdx = 0;
+    let isPlaying = false;
+    let audioCtx = null;
+    let synthInterval = null;
+    let eqInterval = null;
+    const liveAudio = document.getElementById("liveAudioPlayer");
+
+    // Initialize UI
+    function initApp() {
+      const savedName = localStorage.getItem("mmel_member_name");
+      if (savedName) {
+        document.getElementById("displayMemberName").textContent = savedName.toUpperCase();
+      }
+
+      // Build EQ bars
+      const eqContainer = document.getElementById("eqBars");
+      for (let i = 0; i < 16; i++) {
+        const bar = document.createElement("div");
+        bar.className = "eq-bar";
+        eqContainer.appendChild(bar);
+      }
+
+      renderStations();
+      renderTvChannels();
+      renderCatalog("boutiqueCatalog", boutiqueItems, "Commission");
+      renderCatalog("marinaCatalog", marinaItems, "Reserve");
+      renderCatalog("eventsCatalog", eventItems, "RSVP");
+    }
+
+    function renderStations() {
+      const list = document.getElementById("stationList");
+      list.innerHTML = "";
+      stations.forEach((st, idx) => {
+        const div = document.createElement("div");
+        div.className = "station-item" + (idx === currentStationIdx ? " active" : "");
+        div.onclick = () => selectStation(idx);
+        div.innerHTML = `
+          <div>
+            <div class="station-item-title">${st.name}</div>
+            <div class="station-item-sub">${st.host}</div>
+          </div>
+          <span style="color:var(--gold-bright); font-size:0.75rem;">${idx === currentStationIdx && isPlaying ? "LIVE" : "TUNE"}</span>
+        `;
+        list.appendChild(div);
+      });
+
+      const current = stations[currentStationIdx];
+      document.getElementById("stationFreq").textContent = current.freq;
+      document.getElementById("stationName").textContent = current.name;
+      document.getElementById("stationHost").textContent = current.host;
+    }
+
+    function selectStation(idx) {
+      currentStationIdx = idx;
+      renderStations();
+      if (isPlaying) {
+        startPlayback();
+      }
+    }
+
+    function prevStation() {
+      currentStationIdx = (currentStationIdx - 1 + stations.length) % stations.length;
+      selectStation(currentStationIdx);
+    }
+
+    function nextStation() {
+      currentStationIdx = (currentStationIdx + 1) % stations.length;
+      selectStation(currentStationIdx);
+    }
+
+    function togglePlay() {
+      if (isPlaying) {
+        stopPlayback();
+      } else {
+        startPlayback();
+      }
+    }
+
+    function startPlayback() {
+      isPlaying = true;
+      document.getElementById("playBtn").innerHTML = "&#10074;&#10074;";
+      document.getElementById("vinylDisc").classList.add("spinning");
+      document.getElementById("tonearm").classList.add("engaged");
+      renderStations();
+
+      const streamUrl = stations[currentStationIdx].streamUrl;
+      stopSynth();
+
+      if (streamUrl) {
+        liveAudio.src = streamUrl;
+        liveAudio.play().catch(() => {
+          startAmbientSynth(stations[currentStationIdx].baseFreq);
+        });
+      } else {
+        startAmbientSynth(stations[currentStationIdx].baseFreq);
+      }
+
+      startEqAnimation();
+    }
+
+    function stopPlayback() {
+      isPlaying = false;
+      document.getElementById("playBtn").innerHTML = "&#9654;";
+      document.getElementById("vinylDisc").classList.remove("spinning");
+      document.getElementById("tonearm").classList.remove("engaged");
+      liveAudio.pause();
+      stopSynth();
+      stopEqAnimation();
+      renderStations();
+    }
+
+    function loadCustomAudio() {
+      const url = document.getElementById("customAudioUrl").value.trim();
+      if (!url) {
+        showToast("Please paste a valid MP3 or stream URL");
+        return;
+      }
+      stations[currentStationIdx].streamUrl = url;
+      stations[currentStationIdx].name = "Custom VIP Broadcast Stream";
+      stations[currentStationIdx].host = "Direct Live Feed Connected";
+      startPlayback();
+      showToast("Live Audio Stream Connected");
+    }
+
+    // Luxury Ambient Chord Fallback if offline
+    function startAmbientSynth(rootFreq) {
+      try {
+        if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        if (audioCtx.state === "suspended") audioCtx.resume();
+        const playChord = () => {
+          if (!isPlaying) return;
+          [1, 1.25, 1.5, 1.875].forEach((mult) => {
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.type = "sine";
+            osc.frequency.setValueAtTime(rootFreq * mult, audioCtx.currentTime);
+            gain.gain.setValueAtTime(0.001, audioCtx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.03, audioCtx.currentTime + 0.8);
+            gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 3.2);
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            osc.start();
+            osc.stop(audioCtx.currentTime + 3.3);
+          });
+        };
+        playChord();
+        synthInterval = setInterval(playChord, 3400);
+      } catch (e) {}
+    }
+
+    function stopSynth() {
+      if (synthInterval) {
+        clearInterval(synthInterval);
+        synthInterval = null;
+      }
+    }
+
+    function startEqAnimation() {
+      stopEqAnimation();
+      const bars = document.querySelectorAll(".eq-bar");
+      eqInterval = setInterval(() => {
+        bars.forEach((bar) => {
+          const h = Math.floor(Math.random() * 20) + 4;
+          bar.style.height = h + "px";
+        });
+      }, 160);
+    }
+
+    function stopEqAnimation() {
+      if (eqInterval) clearInterval(eqInterval);
+      document.querySelectorAll(".eq-bar").forEach((bar) => (bar.style.height = "5px"));
+    }
+
+    // TV Channels
+    function renderTvChannels() {
+      const container = document.getElementById("tvChannelPills");
+      container.innerHTML = "";
+      tvChannels.forEach((ch, idx) => {
+        const btn = document.createElement("button");
+        btn.className = "pill-btn" + (idx === 0 ? " active" : "");
+        btn.textContent = ch.label;
+        btn.onclick = () => {
+          document.querySelectorAll(".pill-btn").forEach((b) => b.classList.remove("active"));
+          btn.classList.add("active");
+          document.getElementById("tvPlayer").src = ch.embedUrl;
+          document.getElementById("tvNowPlaying").textContent = "Now Airing: " + ch.title;
+        };
+        container.appendChild(btn);
+      });
+    }
+
+    function loadCustomVideo() {
+      let url = document.getElementById("customVideoUrl").value.trim();
+      if (!url) {
+        showToast("Enter a YouTube link first");
+        return;
+      }
+      if (url.includes("watch?v=")) {
+        const id = url.split("watch?v=")[1].split("&")[0];
+        url = "https://www.youtube.com/embed/" + id + "?autoplay=1&rel=0";
+      } else if (url.includes("youtu.be/")) {
+        const id = url.split("youtu.be/")[1].split("?")[0];
+        url = "https://www.youtube.com/embed/" + id + "?autoplay=1&rel=0";
+      }
+      document.getElementById("tvPlayer").src = url;
+      document.getElementById("tvNowPlaying").textContent = "Now Airing: Custom Member Broadcast";
+      showToast("Mevunai Moment TV Feed Updated");
+    }
+
+    function sendChat() {
+      const input = document.getElementById("chatInput");
+      const msg = input.value.trim();
+      if (!msg) return;
+      const name = localStorage.getItem("mmel_member_name") || "Sovereign_Member";
+      const box = document.getElementById("tvChatBox");
+      const line = document.createElement("div");
+      line.className = "chat-msg";
+      line.innerHTML = `<span class="chat-user">${name}:</span> ${msg}`;
+      box.appendChild(line);
+      box.scrollTop = box.scrollHeight;
+      input.value = "";
+    }
+
+    // Catalog Renderer (Atelier, Marina, Events)
+    function renderCatalog(containerId, items, btnLabel) {
+      const box = document.getElementById(containerId);
+      box.innerHTML = "";
+      items.forEach((item) => {
+        const row = document.createElement("div");
+        row.className = "catalog-item";
+        row.innerHTML = `
+          <div>
+            <div class="item-tag">${item.tag}</div>
+            <div class="item-title">${item.title}</div>
+            <div class="item-desc">${item.desc}</div>
+          </div>
+          <button class="small-action" onclick="confirmBooking(this, '${item.title}')">${btnLabel}</button>
+        `;
+        box.appendChild(row);
+      });
+    }
+
+    function confirmBooking(btn, title) {
+      btn.classList.add("booked");
+      btn.textContent = "Confirmed";
+      showToast("Confirmed: " + title);
+    }
+
+    function dispatchFleet() {
+      const vehicle = document.getElementById("fleetVehicle").value;
+      const loc = document.getElementById("fleetLocation").value.trim() || "Main Atrium";
+      showToast(`Dispatched ${vehicle} to ${loc}`);
+    }
+
+    function updateMemberName() {
+      const val = document.getElementById("memberNameInput").value.trim();
+      if (!val) return;
+      localStorage.setItem("mmel_member_name", val);
+      document.getElementById("displayMemberName").textContent = val.toUpperCase();
+      document.getElementById("memberNameInput").value = "";
+      showToast("Member Pass Engraved");
+    }
+
+    // Navigation & Theme Toggle
+    function switchTab(tabId, navBtn) {
+      document.querySelectorAll(".tab-section").forEach((s) => s.classList.remove("active"));
+      document.getElementById("tab-" + tabId).classList.add("active");
+      document.querySelectorAll(".nav-item").forEach((n) => n.classList.remove("active"));
+      navBtn.classList.add("active");
+    }
+
+    function toggleTheme() {
+      const isEmerald = document.body.classList.toggle("emerald-theme");
+      const btn = document.getElementById("themeToggle");
+      const meta = document.getElementById("themeColorMeta");
+      if (isEmerald) {
+        btn.textContent = "Crimson Silk";
+        meta.setAttribute("content", "#062b1d");
+      } else {
+        btn.textContent = "Emerald Gala";
+        meta.setAttribute("content", "#5c0a18");
+      }
+    }
+
+    function showToast(text) {
+      const toast = document.getElementById("toast");
+      toast.textContent = text;
+      toast.style.display = "block";
+      setTimeout(() => {
+        toast.style.display = "none";
+      }, 2800);
+    }
+
+    // Register Service Worker
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => {
+        navigator.serviceWorker.register("./sw.js").catch(() => {});
+      });
+    }
+
+    initApp();
+  </script>
+</body>
+</html>
