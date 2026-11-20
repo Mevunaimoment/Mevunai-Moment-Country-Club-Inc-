@@ -7,821 +7,385 @@
   <meta name="theme-color" content="#5c0a18" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <meta name="apple-mobile-web-app-title" content="MM'EL Radio" />
+  <meta name="apple-mobile-web-app-title" content="MM'EL" />
   <link rel="manifest" href="manifest.json" />
-  <link rel="apple-touch-icon" href="mmel-icon.png" />
   <link rel="icon" type="image/png" href="mmel-icon.png" />
+  <link rel="apple-touch-icon" href="mmel-icon.png" />
   <style>
     :root {
-      --crimson-deep: #1e0308;
-      --crimson-mid: #470713;
-      --crimson-silk: #6d0d1f;
-      --crimson-bright: #93132b;
-      --gold-light: #f9e08e;
+      --bg-deep: #1e0308;
+      --bg-crimson: #4a0714;
+      --card-bg: rgba(34, 4, 10, 0.88);
+      --gold-bright: #f9e08e;
       --gold-mid: #d4af37;
       --gold-dark: #8a6618;
-      --gold-glow: rgba(212, 175, 55, 0.35);
-      --glass-bg: rgba(34, 4, 10, 0.78);
+      --text-main: #fdf6e4;
+      --text-muted: #c9ae7e;
     }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      -webkit-tap-highlight-color: transparent;
-    }
-
+    * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
     body {
-      font-family: 'Georgia', 'Times New Roman', serif;
-      background-color: var(--crimson-deep);
-      background-image:
-        radial-gradient(ellipse at 20% 15%, rgba(147, 19, 43, 0.55) 0%, transparent 50%),
-        radial-gradient(ellipse at 80% 35%, rgba(109, 13, 31, 0.65) 0%, transparent 55%),
-        radial-gradient(ellipse at 35% 80%, rgba(147, 19, 43, 0.45) 0%, transparent 50%),
-        repeating-linear-gradient(135deg, rgba(255, 255, 255, 0.02) 0px, rgba(255, 255, 255, 0.02) 2px, transparent 2px, transparent 10px),
-        linear-gradient(165deg, #3b050f 0%, #1d0207 48%, #470713 100%);
-      color: var(--gold-light);
+      font-family: Georgia, 'Times New Roman', serif;
+      background: radial-gradient(circle at 50% 15%, var(--bg-crimson), var(--bg-deep) 78%);
+      color: var(--text-main);
       min-height: 100vh;
       display: flex;
-      justify-content: center;
-      overflow-x: hidden;
-    }
-
-    /* Subtle gold circuit lines overlay */
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
+      flex-direction: column;
+      align-items: center;
+      padding: 16px 14px 28px;
       background-image:
-        linear-gradient(to right, rgba(212, 175, 55, 0.06) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(212, 175, 55, 0.06) 1px, transparent 1px);
-      background-size: 48px 48px;
-      z-index: 0;
+        radial-gradient(circle at 50% 15%, rgba(110, 12, 30, 0.65), rgba(24, 2, 7, 0.96) 80%),
+        repeating-linear-gradient(45deg, rgba(212, 175, 55, 0.04) 0px, rgba(212, 175, 55, 0.04) 1px, transparent 1px, transparent 28px);
     }
-
     .app-shell {
-      position: relative;
-      z-index: 1;
       width: 100%;
-      max-width: 460px;
-      min-height: 100vh;
-      padding: 16px 16px 28px;
+      max-width: 430px;
       display: flex;
       flex-direction: column;
       gap: 14px;
-      border-left: 1px solid rgba(212, 175, 55, 0.25);
-      border-right: 1px solid rgba(212, 175, 55, 0.25);
-      box-shadow: 0 0 50px rgba(0, 0, 0, 0.85);
     }
-
-    /* Header */
-    .header {
+    .header-bar {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 10px 14px;
-      background: var(--glass-bg);
+      padding: 12px 14px;
+      background: var(--card-bg);
       border: 1.5px solid var(--gold-mid);
-      border-radius: 14px;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6), inset 0 0 12px rgba(212, 175, 55, 0.15);
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.55), inset 0 0 12px rgba(212, 175, 55, 0.15);
     }
-
-    .brand-left {
-      display: flex;
-      align-items: center;
-      gap: 10px;
+    .brand-left { display: flex; align-items: center; gap: 10px; }
+    .crest-badge {
+      width: 36px; height: 36px; border-radius: 50%;
+      border: 1.5px solid var(--gold-bright);
+      overflow: hidden; flex-shrink: 0;
     }
-
-    .crest-mini {
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      border: 1.5px solid var(--gold-light);
-      background: radial-gradient(circle, #5c0a18, #1e0308);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 0 10px var(--gold-glow);
+    .crest-badge img { width: 100%; height: 100%; object-fit: cover; }
+    .brand-title { font-size: 16px; font-weight: bold; letter-spacing: 1.5px; color: var(--gold-bright); }
+    .brand-sub { font-size: 9px; letter-spacing: 1.4px; color: var(--text-muted); text-transform: uppercase; margin-top: 2px; }
+    .on-air {
+      display: flex; align-items: center; gap: 6px;
+      padding: 5px 10px; border-radius: 20px;
+      border: 1px solid var(--gold-dark);
+      background: rgba(92, 10, 24, 0.7);
+      font-size: 10px; letter-spacing: 1.2px; color: var(--gold-bright);
+      font-family: system-ui, -apple-system, sans-serif; font-weight: 700;
     }
-
-    .brand-title {
-      font-size: 16px;
-      font-weight: bold;
-      letter-spacing: 1.5px;
-      background: linear-gradient(180deg, #fff3c4, #d4af37);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+    .dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: #ff3b5c; box-shadow: 0 0 8px #ff3b5c;
+      animation: pulse 1.5s infinite;
     }
-
-    .brand-sub {
-      font-size: 9px;
-      letter-spacing: 1.8px;
-      color: var(--gold-mid);
-      text-transform: uppercase;
-    }
-
-    .live-pill {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      padding: 5px 10px;
-      border-radius: 20px;
-      border: 1px solid var(--gold-mid);
-      background: rgba(92, 10, 24, 0.85);
-      font-size: 10px;
-      font-weight: bold;
-      letter-spacing: 1.2px;
-      color: var(--gold-light);
-    }
-
-    .live-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: #ff3b5c;
-      box-shadow: 0 0 8px #ff3b5c;
-      animation: pulse 1.4s infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.4; transform: scale(0.85); }
-    }
-
-    /* Turntable Card */
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
     .turntable-card {
-      position: relative;
-      background: linear-gradient(145deg, rgba(65, 6, 17, 0.88), rgba(24, 2, 7, 0.94));
-      border: 2px solid var(--gold-mid);
+      background: var(--card-bg);
+      border: 1.5px solid var(--gold-mid);
       border-radius: 20px;
-      padding: 18px 16px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.7), inset 0 0 24px rgba(212, 175, 55, 0.14);
+      padding: 22px 16px 20px;
+      text-align: center;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6), inset 0 0 20px rgba(212, 175, 55, 0.12);
     }
-
-    .vinyl-stage {
+    .vinyl-wrap {
       position: relative;
-      width: 196px;
-      height: 196px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 14px;
+      width: 196px; height: 196px;
+      margin: 0 auto 18px;
+      display: flex; align-items: center; justify-content: center;
     }
-
     .vinyl-disc {
-      width: 186px;
-      height: 186px;
-      border-radius: 50%;
+      width: 186px; height: 186px; border-radius: 50%;
       background:
-        repeating-radial-gradient(circle at center, #140205 0px, #140205 3px, #2b060d 4px, #140205 6px);
-      border: 3px solid var(--gold-mid);
-      box-shadow: 0 0 25px rgba(0, 0, 0, 0.9), 0 0 18px var(--gold-glow);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: transform 0.3s ease;
+        repeating-radial-gradient(circle at center, #140306 0px, #140306 3px, #29070e 4px, #140306 5px);
+      border: 2.5px solid var(--gold-mid);
+      box-shadow: 0 0 24px rgba(212, 175, 55, 0.25);
+      display: flex; align-items: center; justify-content: center;
+      animation: spin 9s linear infinite;
+      animation-play-state: paused;
     }
-
-    .vinyl-disc.spinning {
-      animation: spin 7s linear infinite;
-    }
-
-    @keyframes spin {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
-    }
-
+    .vinyl-disc.playing { animation-play-state: running; }
+    @keyframes spin { 100% { transform: rotate(360deg); } }
     .vinyl-label {
-      width: 82px;
-      height: 82px;
-      border-radius: 50%;
-      background: radial-gradient(circle, #7a0e22, #38040e);
-      border: 2.5px solid var(--gold-light);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.8);
+      width: 74px; height: 74px; border-radius: 50%;
+      border: 2px solid var(--gold-bright);
+      overflow: hidden;
+      box-shadow: 0 0 12px rgba(0,0,0,0.8);
     }
-
+    .vinyl-label img { width: 100%; height: 100%; object-fit: cover; }
     .tonearm {
-      position: absolute;
-      top: 6px;
-      right: 12px;
-      width: 56px;
-      height: 105px;
-      pointer-events: none;
-      transform-origin: 42px 14px;
-      transform: rotate(-16deg);
+      position: absolute; top: 6px; right: 12px;
+      width: 10px; height: 108px;
+      background: linear-gradient(90deg, var(--gold-dark), var(--gold-bright), var(--gold-dark));
+      border-radius: 6px;
+      transform-origin: top center;
+      transform: rotate(-22deg);
       transition: transform 0.5s ease;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.6);
     }
-
-    .tonearm.active {
-      transform: rotate(12deg);
+    .tonearm.active { transform: rotate(14deg); }
+    .tonearm::before {
+      content: ''; position: absolute; top: -6px; left: -6px;
+      width: 22px; height: 22px; border-radius: 50%;
+      background: radial-gradient(circle, var(--gold-bright), var(--gold-dark));
+      border: 1.5px solid #2a040b;
     }
-
-    .now-playing-tag {
-      font-size: 10px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--gold-mid);
-      margin-bottom: 4px;
+    .freq-tag {
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: 10px; letter-spacing: 2px; color: var(--gold-mid);
+      text-transform: uppercase; margin-bottom: 6px;
     }
-
-    .track-title {
-      font-size: 18px;
-      font-weight: bold;
-      text-align: center;
-      color: #fff5d6;
-      letter-spacing: 0.6px;
-      margin-bottom: 3px;
-    }
-
-    .track-host {
-      font-size: 12px;
-      color: var(--gold-mid);
-      margin-bottom: 14px;
-      text-align: center;
-    }
-
-    /* Equalizer Bars */
+    .station-name { font-size: 20px; font-weight: bold; color: var(--gold-bright); margin-bottom: 4px; }
+    .station-host { font-size: 12px; color: var(--text-muted); margin-bottom: 14px; }
     .eq-bars {
-      display: flex;
-      align-items: flex-end;
-      justify-content: center;
-      gap: 4px;
-      height: 26px;
-      margin-bottom: 16px;
+      display: flex; align-items: flex-end; justify-content: center; gap: 4px;
+      height: 22px; margin-bottom: 16px;
     }
-
     .eq-bar {
-      width: 4px;
-      height: 6px;
-      border-radius: 2px;
-      background: linear-gradient(to top, var(--gold-dark), var(--gold-light));
+      width: 4px; height: 5px; border-radius: 2px;
+      background: linear-gradient(to top, var(--gold-dark), var(--gold-bright));
       transition: height 0.15s ease;
     }
-
-    .eq-bars.active .eq-bar {
-      animation: bounce 0.65s ease-in-out infinite alternate;
-    }
-
-    .eq-bar:nth-child(1) { animation-delay: 0.05s; }
-    .eq-bar:nth-child(2) { animation-delay: 0.2s; }
-    .eq-bar:nth-child(3) { animation-delay: 0.35s; }
-    .eq-bar:nth-child(4) { animation-delay: 0.1s; }
-    .eq-bar:nth-child(5) { animation-delay: 0.4s; }
-    .eq-bar:nth-child(6) { animation-delay: 0.15s; }
-    .eq-bar:nth-child(7) { animation-delay: 0.3s; }
-    .eq-bar:nth-child(8) { animation-delay: 0.08s; }
-    .eq-bar:nth-child(9) { animation-delay: 0.25s; }
-    .eq-bar:nth-child(10) { animation-delay: 0.18s; }
-    .eq-bar:nth-child(11) { animation-delay: 0.38s; }
-    .eq-bar:nth-child(12) { animation-delay: 0.12s; }
-
-    @keyframes bounce {
-      0% { height: 5px; }
-      100% { height: 24px; }
-    }
-
-    /* Transport Controls */
-    .controls-row {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 20px;
-      width: 100%;
-      margin-bottom: 14px;
-    }
-
+    .controls { display: flex; align-items: center; justify-content: center; gap: 20px; }
     .ctrl-btn {
-      background: rgba(58, 6, 16, 0.9);
+      width: 44px; height: 44px; border-radius: 50%;
+      background: rgba(65, 8, 19, 0.85);
       border: 1.5px solid var(--gold-mid);
-      color: var(--gold-light);
-      width: 42px;
-      height: 42px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      font-size: 15px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+      color: var(--gold-bright); font-size: 15px; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
     }
-
-    .ctrl-btn:active {
-      transform: scale(0.94);
-    }
-
     .play-btn {
-      width: 58px;
-      height: 58px;
-      border-radius: 50%;
-      border: 2px solid #fff2c2;
-      background: linear-gradient(145deg, #f9e08e, #b88924);
-      color: #2b040b;
-      font-size: 20px;
-      font-weight: bold;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      box-shadow: 0 0 20px var(--gold-glow), 0 6px 15px rgba(0, 0, 0, 0.7);
+      width: 60px; height: 60px; border-radius: 50%;
+      background: radial-gradient(circle at 35% 30%, var(--gold-bright), var(--gold-mid) 65%, var(--gold-dark));
+      border: 2px solid #fff3c4;
+      color: #2b040c; font-size: 20px; font-weight: bold; cursor: pointer;
+      box-shadow: 0 6px 18px rgba(212, 175, 55, 0.35);
+      display: flex; align-items: center; justify-content: center;
     }
-
-    .play-btn:active {
-      transform: scale(0.95);
-    }
-
-    /* Volume Slider */
-    .volume-row {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      width: 90%;
-      font-size: 11px;
-      color: var(--gold-mid);
-    }
-
-    input[type="range"] {
-      -webkit-appearance: none;
-      width: 100%;
-      height: 5px;
-      border-radius: 4px;
-      background: #2b040b;
-      border: 1px solid var(--gold-dark);
-      outline: none;
-    }
-
-    input[type="range"]::-webkit-slider-thumb {
-      -webkit-appearance: none;
-      width: 16px;
-      height: 16px;
-      border-radius: 50%;
-      background: var(--gold-light);
-      border: 2px solid var(--crimson-deep);
-      cursor: pointer;
-      box-shadow: 0 0 8px var(--gold-glow);
-    }
-
-    /* Section Card */
     .section-card {
-      background: var(--glass-bg);
+      background: var(--card-bg);
       border: 1.5px solid var(--gold-mid);
       border-radius: 16px;
       padding: 14px;
-      box-shadow: 0 8px 22px rgba(0, 0, 0, 0.55);
     }
-
-    .section-header {
-      font-size: 11px;
-      letter-spacing: 1.8px;
-      text-transform: uppercase;
-      color: var(--gold-light);
-      margin-bottom: 10px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px solid rgba(212, 175, 55, 0.25);
-      padding-bottom: 6px;
+    .section-title {
+      font-size: 12px; letter-spacing: 1.6px; color: var(--gold-bright);
+      text-transform: uppercase; margin-bottom: 10px;
+      border-bottom: 1px solid rgba(212, 175, 55, 0.25); padding-bottom: 6px;
     }
-
-    /* Station List */
-    .station-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 8px;
+    .channel-list { display: flex; flex-direction: column; gap: 8px; }
+    .channel-item {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 10px 12px; border-radius: 12px;
+      background: rgba(58, 7, 17, 0.55);
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      cursor: pointer; text-align: left; color: var(--text-main);
     }
-
-    .station-btn {
-      text-align: left;
-      padding: 10px;
-      border-radius: 12px;
-      background: rgba(45, 5, 13, 0.85);
-      border: 1px solid rgba(212, 175, 55, 0.4);
-      color: var(--gold-light);
-      cursor: pointer;
-      transition: all 0.2s ease;
+    .channel-item.active {
+      background: rgba(112, 14, 33, 0.85);
+      border-color: var(--gold-bright);
+      box-shadow: 0 0 12px rgba(212, 175, 55, 0.2);
     }
-
-    .station-btn.active {
-      background: linear-gradient(145deg, rgba(130, 16, 37, 0.95), rgba(66, 7, 18, 0.95));
-      border: 1.5px solid var(--gold-light);
-      box-shadow: 0 0 14px var(--gold-glow);
-    }
-
-    .st-freq {
-      font-size: 9px;
-      letter-spacing: 1.2px;
-      color: var(--gold-mid);
-      margin-bottom: 2px;
-    }
-
-    .st-name {
-      font-size: 12px;
-      font-weight: bold;
-      color: #fff6da;
-      margin-bottom: 2px;
-    }
-
-    .st-genre {
-      font-size: 10px;
-      color: #d9b87c;
-    }
-
-    /* Custom Stream Loader */
-    .stream-input-row {
-      display: flex;
-      gap: 8px;
-    }
-
+    .ch-name { font-size: 14px; font-weight: bold; color: var(--gold-bright); }
+    .ch-desc { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+    .ch-freq { font-family: system-ui, sans-serif; font-size: 11px; color: var(--gold-mid); font-weight: 700; }
+    .stream-row { display: flex; gap: 8px; }
     .stream-input {
-      flex: 1;
-      padding: 9px 11px;
-      border-radius: 10px;
-      border: 1px solid var(--gold-mid);
-      background: rgba(20, 2, 6, 0.9);
-      color: var(--gold-light);
-      font-size: 12px;
-      outline: none;
+      flex: 1; padding: 9px 11px; border-radius: 10px;
+      border: 1px solid var(--gold-dark);
+      background: rgba(20, 2, 6, 0.9); color: var(--text-main);
+      font-size: 12px; outline: none;
     }
-
-    .stream-input::placeholder {
-      color: rgba(212, 175, 55, 0.5);
+    .load-btn {
+      padding: 9px 14px; border-radius: 10px;
+      background: linear-gradient(135deg, var(--gold-bright), var(--gold-mid));
+      border: none; color: #2b040c; font-weight: bold; font-size: 12px; cursor: pointer;
     }
-
-    .gold-action-btn {
-      padding: 9px 14px;
-      border-radius: 10px;
-      border: 1px solid #fff2c2;
-      background: linear-gradient(145deg, #f9e08e, #b88924);
-      color: #260309;
-      font-weight: bold;
-      font-size: 11px;
-      letter-spacing: 0.8px;
-      cursor: pointer;
-      white-space: nowrap;
-    }
-
-    /* VIP Request Feed */
-    .request-list {
-      display: flex;
-      flex-direction: column;
-      gap: 7px;
-      max-height: 120px;
-      overflow-y: auto;
-      margin-bottom: 9px;
-    }
-
-    .request-item {
-      font-size: 11px;
-      padding: 7px 10px;
-      border-radius: 8px;
-      background: rgba(26, 3, 8, 0.75);
-      border-left: 2.5px solid var(--gold-mid);
-      color: #f6e4b5;
-    }
-
-    .request-item strong {
-      color: var(--gold-light);
-    }
-
-    /* Footer Trademark */
-    .footer-tag {
-      margin-top: auto;
-      text-align: center;
-      padding-top: 10px;
-      font-size: 11px;
-      letter-spacing: 0.8px;
-      color: var(--gold-light);
-      text-shadow: 0 2px 6px rgba(0, 0, 0, 0.9);
+    .trademark {
+      text-align: center; font-size: 11px; letter-spacing: 0.8px;
+      color: var(--gold-mid); margin-top: 6px; opacity: 0.9;
     }
   </style>
 </head>
 <body>
   <div class="app-shell">
-    <!-- Top Header -->
-    <header class="header">
+    <div class="header-bar">
       <div class="brand-left">
-        <div class="crest-mini">
-          <svg width="22" height="22" viewBox="0 0 64 64" fill="none">
-            <polygon points="32,6 6,54 58,54" stroke="#f9e08e" stroke-width="4" fill="rgba(212,175,55,0.2)"/>
-            <ellipse cx="32" cy="36" rx="12" ry="6" stroke="#f9e08e" stroke-width="3"/>
-            <circle cx="32" cy="36" r="3" fill="#f9e08e"/>
-          </svg>
-        </div>
+        <div class="crest-badge"><img src="mmel-icon.png" alt="MMEL Crest" /></div>
         <div>
           <div class="brand-title">MM'EL RADIO</div>
           <div class="brand-sub">Sovereign Broadcast Network</div>
         </div>
       </div>
-      <div class="live-pill">
-        <span class="live-dot"></span>
-        <span>ON AIR</span>
-      </div>
-    </header>
+      <div class="on-air"><span class="dot"></span> ON AIR</div>
+    </div>
 
-    <!-- Main Turntable Deck -->
-    <section class="turntable-card">
-      <div class="vinyl-stage">
+    <div class="turntable-card">
+      <div class="vinyl-wrap">
         <div class="vinyl-disc" id="vinylDisc">
-          <div class="vinyl-label">
-            <svg width="34" height="34" viewBox="0 0 64 64" fill="none">
-              <polygon points="32,6 6,54 58,54" stroke="#f9e08e" stroke-width="3.5" fill="rgba(212,175,55,0.22)"/>
-              <ellipse cx="32" cy="36" rx="12" ry="6" stroke="#f9e08e" stroke-width="2.5"/>
-              <circle cx="32" cy="36" r="3" fill="#f9e08e"/>
-            </svg>
-            <span style="font-size:8px;letter-spacing:1.5px;color:#f9e08e;margin-top:2px;font-weight:bold;">MM'EL</span>
-          </div>
+          <div class="vinyl-label"><img src="mmel-icon.png" alt="MMEL" /></div>
         </div>
-        <!-- Gold Tonearm -->
-        <svg class="tonearm" id="tonearm" viewBox="0 0 60 120" fill="none">
-          <circle cx="42" cy="14" r="10" fill="#d4af37" stroke="#f9e08e" stroke-width="2"/>
-          <path d="M42 14 L24 88 L16 102" stroke="#f9e08e" stroke-width="3.5" stroke-linecap="round"/>
-          <rect x="10" y="98" width="12" height="16" rx="2" transform="rotate(22 10 98)" fill="#d4af37"/>
-        </svg>
+        <div class="tonearm" id="tonearm"></div>
       </div>
+      <div class="freq-tag" id="freqTag">CH 01 • 104.8 FM SOVEREIGN</div>
+      <div class="station-name" id="stationName">Crimson Silk Atrium Lounge</div>
+      <div class="station-host" id="stationHost">Hosted by DJ Pharaoh • Live from Flagship</div>
+      <div class="eq-bars" id="eqBars"></div>
+      <div class="controls">
+        <button class="ctrl-btn" onclick="prevStation()" aria-label="Previous">&#9664;&#9664;</button>
+        <button class="play-btn" id="playBtn" onclick="togglePlay()" aria-label="Play or Pause">&#9654;</button>
+        <button class="ctrl-btn" onclick="nextStation()" aria-label="Next">&#9654;&#9654;</button>
+      </div>
+    </div>
 
-      <div class="now-playing-tag" id="stationBadge">CH 01 • 104.8 FM SOVEREIGN</div>
-      <div class="track-title" id="trackTitle">Crimson Silk Atrium Lounge</div>
-      <div class="track-host" id="trackHost">Hosted by DJ Pharaoh • Live from Flagship</div>
+    <div class="section-card">
+      <div class="section-title">Select Broadcast Channel</div>
+      <div class="channel-list" id="channelList"></div>
+    </div>
 
-      <!-- Equalizer -->
-      <div class="eq-bars" id="eqBars">
-        <div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div>
-        <div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div>
-        <div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div>
-        <div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div>
+    <div class="section-card">
+      <div class="section-title">Custom Live Stream / MP3 URL</div>
+      <div class="stream-row">
+        <input class="stream-input" id="customUrl" type="url" placeholder="Paste .mp3 or live radio stream URL..." />
+        <button class="load-btn" onclick="loadCustomStream()">Tune In</button>
       </div>
+    </div>
 
-      <!-- Transport Controls -->
-      <div class="controls-row">
-        <button class="ctrl-btn" onclick="prevStation()" title="Previous Channel">&#9664;&#9664;</button>
-        <button class="play-btn" id="playBtn" onclick="togglePlay()" title="Play / Pause">&#9654;</button>
-        <button class="ctrl-btn" onclick="nextStation()" title="Next Channel">&#9654;&#9654;</button>
-      </div>
-
-      <!-- Volume -->
-      <div class="volume-row">
-        <span>VOL</span>
-        <input type="range" id="volumeSlider" min="0" max="1" step="0.02" value="0.7" oninput="updateVolume(this.value)" />
-        <span id="volLabel">70%</span>
-      </div>
-    </section>
-
-    <!-- Station Selector -->
-    <section class="section-card">
-      <div class="section-header">
-        <span>MM'EL Broadcast Channels</span>
-        <span>4 STREAMS</span>
-      </div>
-      <div class="station-grid" id="stationGrid"></div>
-    </section>
-
-    <!-- Custom MP3 / Stream URL Loader -->
-    <section class="section-card">
-      <div class="section-header">
-        <span>Custom MP3 / Live Stream URL</span>
-        <span>DIRECT AUDIO</span>
-      </div>
-      <div class="stream-input-row">
-        <input type="url" id="customUrlInput" class="stream-input" placeholder="Paste .mp3 or live radio stream link..." />
-        <button class="gold-action-btn" onclick="loadCustomStream()">TUNE IN</button>
-      </div>
-    </section>
-
-    <!-- VIP Listener Shoutouts & Song Requests -->
-    <section class="section-card">
-      <div class="section-header">
-        <span>VIP Studio Request Line</span>
-        <span>MEMBERS ONLY</span>
-      </div>
-      <div class="request-list" id="requestList">
-        <div class="request-item"><strong>Seat #04 (Emerald Vanguard):</strong> Spin the midnight sax edit for the tarmac arrival!</div>
-        <div class="request-item"><strong>Seat #01 (Founder's Circle):</strong> Broadcast live from the Royal Crimson Gala tonight.</div>
-      </div>
-      <div class="stream-input-row">
-        <input type="text" id="requestInput" class="stream-input" placeholder="Send live request to the DJ booth..." />
-        <button class="gold-action-btn" onclick="sendRequest()">SEND</button>
-      </div>
-    </section>
-
-    <footer class="footer-tag">
-      mevunai Moment™ Country Club, Inc ®
-    </footer>
+    <div class="trademark">mevunai Moment™ Country Club, Inc ®</div>
   </div>
 
-  <audio id="externalAudio" crossorigin="anonymous"></audio>
+  <audio id="audioPlayer" crossorigin="anonymous"></audio>
 
   <script>
     const stations = [
-      {
-        freq: "CH 01 • 104.8 FM",
-        name: "Crimson Silk Lounge",
-        genre: "Velvet Jazz & Downtempo",
-        host: "Hosted by DJ Pharaoh • Flagship Atrium",
-        notes: [220.00, 261.63, 329.63, 392.00, 493.88]
-      },
-      {
-        freq: "CH 02 • 108.2 FM",
-        name: "Private Jet Midnight",
-        genre: "Deep Ambient & Tarmac Soul",
-        host: "MM'EL Aviation Sky Lounge Feed",
-        notes: [196.00, 246.94, 293.66, 369.99, 440.00]
-      },
-      {
-        freq: "CH 03 • 99.4 FM",
-        name: "Superbike Syndicate",
-        genre: "High-Octane Synth & Bass",
-        host: "Live from the MMCC Paddock",
-        notes: [146.83, 220.00, 261.63, 329.63, 440.00]
-      },
-      {
-        freq: "CH 04 • 101.9 FM",
-        name: "Royal Gala Symphony",
-        genre: "Neo-Classical Strings & Gold",
-        host: "Grand Ballroom Evening Broadcast",
-        notes: [174.61, 220.00, 261.63, 349.23, 440.00]
-      }
+      { freq: "CH 01 • 104.8 FM SOVEREIGN", name: "Crimson Silk Atrium Lounge", host: "Hosted by DJ Pharaoh • Live from Flagship", note: 174.61 },
+      { freq: "CH 02 • 98.4 FM AVIATION", name: "Private Jet Midnight", host: "Curated Executive Deep House", note: 196.00 },
+      { freq: "CH 03 • 101.2 FM SYNDICATE", name: "Superbike Syndicate", host: "High-Octane Night Drive Mix", note: 220.00 },
+      { freq: "CH 04 • 107.9 FM ROYAL", name: "Pharaoh's Velvet Gala", host: "Orchestral & Neo-Soul Ballroom", note: 146.83 }
     ];
 
     let currentIdx = 0;
     let isPlaying = false;
-    let usingExternalStream = false;
+    let usingCustomUrl = false;
     let audioCtx = null;
-    let masterGain = null;
-    let synthTimer = null;
-    let noteStep = 0;
+    let osc = null;
+    let gainNode = null;
+    let eqTimer = null;
 
-    const externalAudio = document.getElementById("externalAudio");
-
-    function renderStations() {
-      const grid = document.getElementById("stationGrid");
-      grid.innerHTML = stations.map((st, idx) => `
-        <button class="station-btn ${idx === currentIdx && !usingExternalStream ? 'active' : ''}" onclick="selectStation(${idx})">
-          <div class="st-freq">${st.freq}</div>
-          <div class="st-name">${st.name}</div>
-          <div class="st-genre">${st.genre}</div>
-        </button>
-      `).join("");
+    const eqContainer = document.getElementById('eqBars');
+    for (let i = 0; i < 14; i++) {
+      const bar = document.createElement('div');
+      bar.className = 'eq-bar';
+      eqContainer.appendChild(bar);
     }
 
-    function initAudioEngine() {
-      if (!audioCtx) {
-        const AudioContext = window.AudioContext || window.webkitAudioContext;
-        audioCtx = new AudioContext();
-        masterGain = audioCtx.createGain();
-        masterGain.gain.value = parseFloat(document.getElementById("volumeSlider").value) * 0.28;
-        masterGain.connect(audioCtx.destination);
-      }
-      if (audioCtx.state === "suspended") {
-        audioCtx.resume();
-      }
+    function renderChannels() {
+      const list = document.getElementById('channelList');
+      list.innerHTML = '';
+      stations.forEach((st, idx) => {
+        const btn = document.createElement('button');
+        btn.className = 'channel-item' + (idx === currentIdx && !usingCustomUrl ? ' active' : '');
+        btn.innerHTML = `<div><div class="ch-name">${st.name}</div><div class="ch-desc">${st.host}</div></div><div class="ch-freq">${st.freq.split('•')[1].trim()}</div>`;
+        btn.onclick = () => selectStation(idx);
+        list.appendChild(btn);
+      });
     }
 
-    function playAmbientChord() {
-      if (!isPlaying || usingExternalStream || !audioCtx) return;
-      const st = stations[currentIdx];
-      const freq = st.notes[noteStep % st.notes.length];
-      noteStep++;
-
-      const osc = audioCtx.createOscillator();
-      const noteGain = audioCtx.createGain();
-      osc.type = currentIdx === 2 ? "triangle" : "sine";
+    function startSynth(freq) {
+      stopSynth();
+      const AudioContext = window.AudioContext || window.webkitAudioContext;
+      if (!audioCtx) audioCtx = new AudioContext();
+      if (audioCtx.state === 'suspended') audioCtx.resume();
+      osc = audioCtx.createOscillator();
+      gainNode = audioCtx.createGain();
+      osc.type = 'sine';
       osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
-
-      noteGain.gain.setValueAtTime(0.001, audioCtx.currentTime);
-      noteGain.gain.exponentialRampToValueAtTime(0.35, audioCtx.currentTime + 0.35);
-      noteGain.gain.exponentialRampToValueAtTime(0.0008, audioCtx.currentTime + 2.2);
-
-      osc.connect(noteGain);
-      noteGain.connect(masterGain);
-
+      gainNode.gain.setValueAtTime(0.04, audioCtx.currentTime);
+      osc.connect(gainNode);
+      gainNode.connect(audioCtx.destination);
       osc.start();
-      osc.stop(audioCtx.currentTime + 2.3);
     }
 
-    function startSynthLoop() {
-      stopSynthLoop();
-      playAmbientChord();
-      synthTimer = setInterval(playAmbientChord, currentIdx === 2 ? 950 : 1600);
+    function stopSynth() {
+      if (osc) { try { osc.stop(); osc.disconnect(); } catch (e) {} osc = null; }
     }
 
-    function stopSynthLoop() {
-      if (synthTimer) {
-        clearInterval(synthTimer);
-        synthTimer = null;
-      }
-    }
-
-    function updateVisualState() {
-      const disc = document.getElementById("vinylDisc");
-      const arm = document.getElementById("tonearm");
-      const eq = document.getElementById("eqBars");
-      const btn = document.getElementById("playBtn");
-
+    function updateUI() {
+      const disc = document.getElementById('vinylDisc');
+      const arm = document.getElementById('tonearm');
+      const btn = document.getElementById('playBtn');
+      const bars = document.querySelectorAll('.eq-bar');
       if (isPlaying) {
-        disc.classList.add("spinning");
-        arm.classList.add("active");
-        eq.classList.add("active");
-        btn.innerHTML = "&#10074;&#10074;";
+        disc.classList.add('playing');
+        arm.classList.add('active');
+        btn.innerHTML = '&#10074;&#10074;';
+        clearInterval(eqTimer);
+        eqTimer = setInterval(() => {
+          bars.forEach(b => { b.style.height = (4 + Math.floor(Math.random() * 18)) + 'px'; });
+        }, 160);
       } else {
-        disc.classList.remove("spinning");
-        arm.classList.remove("active");
-        eq.classList.remove("active");
-        btn.innerHTML = "&#9654;";
+        disc.classList.remove('playing');
+        arm.classList.remove('active');
+        btn.innerHTML = '&#9654;';
+        clearInterval(eqTimer);
+        bars.forEach(b => { b.style.height = '5px'; });
       }
+      renderChannels();
     }
 
     function togglePlay() {
-      if (!isPlaying) {
-        isPlaying = true;
-        if (usingExternalStream) {
-          externalAudio.play().catch(() => {
-            alert("Stream could not autoplay. Check the stream URL or tap Play again.");
-          });
-        } else {
-          initAudioEngine();
-          startSynthLoop();
-        }
-      } else {
+      const player = document.getElementById('audioPlayer');
+      if (isPlaying) {
         isPlaying = false;
-        externalAudio.pause();
-        stopSynthLoop();
+        player.pause();
+        stopSynth();
+      } else {
+        isPlaying = true;
+        if (usingCustomUrl && player.src) {
+          player.play().catch(() => {});
+        } else {
+          startSynth(stations[currentIdx].note);
+        }
       }
-      updateVisualState();
+      updateUI();
     }
 
     function selectStation(idx) {
+      usingCustomUrl = false;
+      const player = document.getElementById('audioPlayer');
+      player.pause();
       currentIdx = idx;
-      usingExternalStream = false;
-      externalAudio.pause();
       const st = stations[currentIdx];
-      document.getElementById("stationBadge").textContent = st.freq + " SOVEREIGN";
-      document.getElementById("trackTitle").textContent = st.name;
-      document.getElementById("trackHost").textContent = st.host;
-      renderStations();
-
-      if (isPlaying) {
-        initAudioEngine();
-        startSynthLoop();
-      } else {
-        togglePlay();
-      }
+      document.getElementById('freqTag').textContent = st.freq;
+      document.getElementById('stationName').textContent = st.name;
+      document.getElementById('stationHost').textContent = st.host;
+      isPlaying = true;
+      startSynth(st.note);
+      updateUI();
     }
 
-    function nextStation() {
-      selectStation((currentIdx + 1) % stations.length);
-    }
-
-    function prevStation() {
-      selectStation((currentIdx - 1 + stations.length) % stations.length);
-    }
-
-    function updateVolume(val) {
-      const pct = Math.round(val * 100);
-      document.getElementById("volLabel").textContent = pct + "%";
-      externalAudio.volume = parseFloat(val);
-      if (masterGain && audioCtx) {
-        masterGain.gain.setValueAtTime(parseFloat(val) * 0.28, audioCtx.currentTime);
-      }
-    }
+    function prevStation() { selectStation((currentIdx - 1 + stations.length) % stations.length); }
+    function nextStation() { selectStation((currentIdx + 1) % stations.length); }
 
     function loadCustomStream() {
-      const url = document.getElementById("customUrlInput").value.trim();
+      const url = document.getElementById('customUrl').value.trim();
       if (!url) return;
-      stopSynthLoop();
-      usingExternalStream = true;
-      externalAudio.src = url;
-      externalAudio.volume = parseFloat(document.getElementById("volumeSlider").value);
-      document.getElementById("stationBadge").textContent = "LIVE EXTERNAL FEED";
-      document.getElementById("trackTitle").textContent = "Custom Member Broadcast";
-      document.getElementById("trackHost").textContent = url.slice(0, 42) + (url.length > 42 ? "..." : "");
-      renderStations();
+      stopSynth();
+      usingCustomUrl = true;
+      const player = document.getElementById('audioPlayer');
+      player.src = url;
+      document.getElementById('freqTag').textContent = 'LIVE STREAM • DIRECT FEED';
+      document.getElementById('stationName').textContent = 'Custom Sovereign Broadcast';
+      document.getElementById('stationHost').textContent = url;
       isPlaying = true;
-      externalAudio.play().catch(() => {
-        alert("Unable to load stream. Ensure the link is a direct MP3 or Icecast/Shoutcast audio stream.");
+      player.play().catch(() => {});
+      updateUI();
+    }
+
+    renderChannels();
+
+    // Register Service Worker for full Android & Desktop App Installation
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js').catch(() => {});
       });
-      updateVisualState();
     }
-
-    function sendRequest() {
-      const input = document.getElementById("requestInput");
-      const text = input.value.trim();
-      if (!text) return;
-      const list = document.getElementById("requestList");
-      const item = document.createElement("div");
-      item.className = "request-item";
-      item.innerHTML = `<strong>VIP Member (Live):</strong> ${text.replace(/</g, "&lt;")}`;
-      list.prepend(item);
-      input.value = "";
-    }
-
-    renderStations();
   </script>
 </body>
 </html>

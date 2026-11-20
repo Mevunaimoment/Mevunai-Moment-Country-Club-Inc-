@@ -1,8 +1,9 @@
 {
-  "name": "MM'EL Radio \u2014 Mevunai Moment Country Club",
-  "short_name": "MM'EL Radio",
-  "description": "Official Royal Crimson & Brushed Gold Broadcast Player for Mevunai Moment Country Club, Inc.",
+  "name": "MM'EL Radio — Mevunai Moment Country Club",
+  "short_name": "MM'EL",
+  "description": "Official Sovereign Broadcast Network for Mevunai Moment™ Country Club, Inc ®",
   "start_url": "./index.html",
+  "scope": "./",
   "display": "standalone",
   "orientation": "portrait",
   "background_color": "#2a040b",
@@ -13,12 +14,6 @@
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
-    },
-    {
-      "src": "mmel-icon.png",
-      "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any"
     }
   ]
 }
