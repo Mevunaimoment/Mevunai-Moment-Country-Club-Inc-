@@ -1,15 +1,14 @@
 {
-  "name": "Mevunai Moment™ Country Club, Inc ®",
-  "short_name": "M'M™ Club",
-  "description": "Sovereign 13-Department All-Access Portal for Mevunai Moment™ Country Club, Inc ®",
+  "name": "Mevunai Moment™ Flagship Couture & Atelier",
+  "short_name": "MMCC Atelier",
+  "description": "Mevunai Moment™ Country Club, Inc ® Flagship Couture & Atelier — M'M™ countryclub.inc",
   "start_url": "./index.html",
   "display": "standalone",
-  "background_color": "#38050e",
-  "theme_color": "#5c0a18",
-  "orientation": "portrait",
+  "background_color": "#2a040a",
+  "theme_color": "#3a060e",
   "icons": [
     {
-      "src": "master-icon.png",
+      "src": "atelier-icon.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
