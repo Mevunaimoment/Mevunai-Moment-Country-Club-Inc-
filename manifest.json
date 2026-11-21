@@ -1,16 +1,15 @@
 {
-  "name": "MM'EL Radio — Mevunai Moment Country Club",
-  "short_name": "MM'EL",
-  "description": "Official Sovereign Broadcast Network for Mevunai Moment™ Country Club, Inc ®",
+  "name": "Mevunai Moment™ Country Club, Inc ®",
+  "short_name": "M'M™ Club",
+  "description": "Sovereign 13-Department All-Access Portal for Mevunai Moment™ Country Club, Inc ®",
   "start_url": "./index.html",
-  "scope": "./",
   "display": "standalone",
-  "orientation": "portrait",
-  "background_color": "#2a040b",
+  "background_color": "#38050e",
   "theme_color": "#5c0a18",
+  "orientation": "portrait",
   "icons": [
     {
-      "src": "mmel-icon.png",
+      "src": "master-icon.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
