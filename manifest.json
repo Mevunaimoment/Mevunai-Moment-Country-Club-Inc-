@@ -1,13 +1,16 @@
 {
-  "name": "Mevunai Moment™ Country Club, Inc ®",
-  "short_name": "MMCC Sovereign",
+  "name": "Mevunai Moment Country Club — Sovereign v25",
+  "short_name": "MMCC v25",
+  "description": "13-Department Sovereign Club App with 24K Gold Pyramid Intro, Offline Video Vault, Valet & Jet Garage, and VIP Card Studio.",
   "start_url": "./index.html",
+  "scope": "./",
   "display": "standalone",
-  "background_color": "#1a0207",
-  "theme_color": "#2b040c",
+  "orientation": "portrait",
+  "background_color": "#0b0907",
+  "theme_color": "#0b0907",
   "icons": [
     {
-      "src": "master-icon.png",
+      "src": "icon-512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
