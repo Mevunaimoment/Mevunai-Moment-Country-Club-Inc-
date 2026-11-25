@@ -2,738 +2,1090 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <meta name="theme-color" content="#3a060e" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <title>Mevunai Moment™ — Flagship Couture &amp; Atelier</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mevunai Moment™ Country Club, Inc ® · Sovereign Portal v27</title>
   <link rel="manifest" href="manifest.json" />
-  <link rel="icon" type="image/png" href="atelier-icon.png" />
-  <link rel="apple-touch-icon" href="atelier-icon.png" />
+  <meta name="theme-color" content="#2b040c" />
   <style>
     :root {
-      --bg-deep: #2a040a;
-      --bg-mid: #4a0813;
-      --bg-card: rgba(42, 4, 10, 0.88);
+      --bg-deep: #1a0207;
+      --bg-card: #2b040c;
+      --bg-elevated: #380712;
       --gold: #d4af37;
-      --gold-light: #f3e5ab;
-      --gold-dim: rgba(212, 175, 55, 0.35);
-      --text-main: #f8f1e5;
-      --text-muted: #d6c3a5;
-      --accent-btn: linear-gradient(135deg, #d4af37 0%, #aa8020 100%);
-      --btn-text: #2a040a;
+      --gold-bright: #f5d77f;
+      --gold-soft: rgba(212, 175, 55, 0.26);
+      --text-main: #f9f3e8;
+      --text-muted: #cbbba0;
+      --sidebar-w: 320px;
     }
-    body.emerald-theme {
-      --bg-deep: #041f15;
-      --bg-mid: #0a3626;
-      --bg-card: rgba(4, 31, 21, 0.9);
-      --gold: #d4af37;
-      --gold-light: #f3e5ab;
-      --gold-dim: rgba(212, 175, 55, 0.38);
-      --text-main: #f4f7f2;
-      --text-muted: #bdd1c5;
-      --btn-text: #041f15;
+    body.theme-emerald {
+      --bg-deep: #041a12;
+      --bg-card: #082b1e;
+      --bg-elevated: #0d3b2a;
     }
-    * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+    * { box-sizing: border-box; }
     body {
-      font-family: Georgia, "Times New Roman", serif;
-      background:
-        repeating-linear-gradient(115deg, rgba(255,255,255,0.025) 0px, rgba(255,255,255,0.025) 2px, transparent 2px, transparent 28px),
-        radial-gradient(circle at top center, var(--bg-mid) 0%, var(--bg-deep) 85%);
+      margin: 0;
+      font-family: 'Georgia', 'Times New Roman', serif;
+      background: radial-gradient(circle at top right, var(--bg-card), var(--bg-deep) 72%);
       color: var(--text-main);
       min-height: 100vh;
-      padding-bottom: 92px;
-      overflow-x: hidden;
-    }
-    .container { max-width: 540px; margin: 0 auto; padding: 14px; }
-
-    /* Top Header */
-    .top-bar {
-      display: flex; align-items: center; justify-content: space-between;
-      border: 1.5px solid var(--gold);
-      background: var(--bg-card);
-      border-radius: 14px;
-      padding: 10px 14px;
-      margin-bottom: 12px;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.45);
-    }
-    .brand-left { display: flex; align-items: center; gap: 10px; }
-    .crest-badge {
-      width: 42px; height: 42px; border-radius: 50%;
-      border: 1.5px solid var(--gold);
-      display: flex; align-items: center; justify-content: center;
-      background: radial-gradient(circle, rgba(212,175,55,0.22), transparent);
-      overflow: hidden; flex-shrink: 0;
-    }
-    .crest-badge img { width: 100%; height: 100%; object-fit: cover; }
-    .brand-title { font-size: 15px; font-weight: bold; letter-spacing: 1.2px; color: var(--gold-light); line-height: 1.15; }
-    .brand-sub { font-size: 10px; letter-spacing: 1px; color: var(--gold); text-transform: uppercase; margin-top: 2px; }
-    .theme-btn {
-      background: var(--accent-btn); color: var(--btn-text);
-      border: none; border-radius: 20px; padding: 7px 12px;
-      font-family: inherit; font-size: 10px; font-weight: bold;
-      letter-spacing: 0.8px; cursor: pointer; text-transform: uppercase;
     }
 
-    /* Hero Banner */
-    .hero-card {
-      border: 1.5px solid var(--gold);
-      border-radius: 14px;
-      background: var(--bg-card);
-      overflow: hidden;
-      margin-bottom: 14px;
-      box-shadow: 0 10px 28px rgba(0,0,0,0.5);
+    /* === 7.5s CINEMATIC SPLASH INTRO === */
+    #splash-intro {
+      position: fixed;
+      inset: 0;
+      z-index: 10000;
+      background: radial-gradient(circle at center, #380712 0%, #140105 85%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 24px;
+      transition: opacity 0.8s ease, visibility 0.8s ease;
     }
-    .hero-img-wrap { width: 100%; display: none; border-bottom: 1px solid var(--gold-dim); }
-    .hero-img-wrap img { width: 100%; display: block; max-height: 210px; object-fit: cover; }
-    .hero-fallback {
-      padding: 18px 16px; text-align: center;
-      background: radial-gradient(circle at center, rgba(212,175,55,0.14) 0%, transparent 75%);
+    #splash-intro.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
     }
-    .hero-tag { font-size: 10px; letter-spacing: 2px; color: var(--gold); margin-bottom: 6px; }
-    .hero-heading { font-size: 20px; letter-spacing: 1.6px; color: var(--gold-light); margin-bottom: 6px; }
-    .hero-desc { font-size: 12px; color: var(--text-muted); line-height: 1.4; }
-
-    /* Views */
-    .view-section { display: none; }
-    .view-section.active { display: block; }
-
-    /* Category Filter Pills */
-    .pill-row {
-      display: flex; gap: 8px; overflow-x: auto; padding-bottom: 8px; margin-bottom: 12px;
-      scrollbar-width: none;
-    }
-    .pill-row::-webkit-scrollbar { display: none; }
-    .pill-btn {
-      white-space: nowrap; padding: 7px 14px; border-radius: 20px;
-      border: 1px solid var(--gold-dim); background: var(--bg-card);
-      color: var(--text-muted); font-family: inherit; font-size: 11px;
-      letter-spacing: 0.6px; cursor: pointer;
-    }
-    .pill-btn.active {
-      background: var(--accent-btn); color: var(--btn-text);
-      border-color: var(--gold); font-weight: bold;
-    }
-
-    /* Product Cards */
-    .product-grid { display: flex; flex-direction: column; gap: 14px; }
-    .product-card {
-      border: 1.5px solid var(--gold);
-      border-radius: 14px;
-      background: var(--bg-card);
-      overflow: hidden;
-      box-shadow: 0 8px 22px rgba(0,0,0,0.45);
-    }
-    .product-media {
-      position: relative; width: 100%; min-height: 145px;
-      background: radial-gradient(circle at center, rgba(212,175,55,0.16), rgba(0,0,0,0.35));
-      display: flex; align-items: center; justify-content: center;
-      border-bottom: 1px solid var(--gold-dim);
-    }
-    .product-media img {
-      width: 100%; max-height: 260px; object-fit: cover; display: block;
-    }
-    .media-placeholder {
-      padding: 28px 16px; text-align: center; color: var(--gold-light);
-    }
-    .media-placeholder .emb-icon { font-size: 28px; display: block; margin-bottom: 6px; color: var(--gold); }
-    .media-placeholder span { font-size: 11px; letter-spacing: 1px; color: var(--text-muted); }
-    .swap-btn {
-      position: absolute; bottom: 10px; right: 10px;
-      background: rgba(20, 4, 8, 0.85); color: var(--gold-light);
-      border: 1px solid var(--gold); border-radius: 16px;
-      padding: 5px 11px; font-family: inherit; font-size: 10px;
-      letter-spacing: 0.6px; cursor: pointer;
-    }
-    .cat-badge {
-      position: absolute; top: 10px; left: 10px;
-      background: rgba(20, 4, 8, 0.85); color: var(--gold);
-      border: 1px solid var(--gold-dim); border-radius: 12px;
-      padding: 4px 10px; font-size: 9px; letter-spacing: 1px; text-transform: uppercase;
-    }
-    .product-body { padding: 14px; }
-    .product-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; margin-bottom: 6px; }
-    .product-name { font-size: 16px; font-weight: bold; color: var(--gold-light); }
-    .product-price { font-size: 15px; font-weight: bold; color: var(--gold); white-space: nowrap; }
-    .product-desc { font-size: 12px; color: var(--text-muted); line-height: 1.45; margin-bottom: 12px; }
-    .card-actions { display: flex; gap: 8px; }
-    .btn-gold {
-      flex: 1; background: var(--accent-btn); color: var(--btn-text);
-      border: none; border-radius: 10px; padding: 10px 12px;
-      font-family: inherit; font-size: 11px; font-weight: bold;
-      letter-spacing: 0.8px; text-transform: uppercase; cursor: pointer;
-    }
-    .btn-outline {
-      background: transparent; color: var(--gold-light);
-      border: 1px solid var(--gold); border-radius: 10px; padding: 10px 12px;
-      font-family: inherit; font-size: 11px; letter-spacing: 0.6px; cursor: pointer;
-    }
-
-    /* Bespoke Customizer & Forms */
-    .panel-card {
-      border: 1.5px solid var(--gold); border-radius: 14px;
-      background: var(--bg-card); padding: 16px; margin-bottom: 14px;
-    }
-    .panel-title { font-size: 16px; color: var(--gold-light); letter-spacing: 1px; margin-bottom: 4px; }
-    .panel-sub { font-size: 11px; color: var(--text-muted); margin-bottom: 14px; }
-    .field-label { display: block; font-size: 11px; color: var(--gold); letter-spacing: 0.8px; text-transform: uppercase; margin-bottom: 6px; margin-top: 12px; }
-    .swatch-row { display: flex; gap: 8px; flex-wrap: wrap; }
-    .swatch-opt {
-      flex: 1; min-width: 95px; padding: 9px 10px; border-radius: 10px;
-      border: 1px solid var(--gold-dim); background: rgba(0,0,0,0.25);
-      color: var(--text-main); font-family: inherit; font-size: 11px; cursor: pointer; text-align: center;
-    }
-    .swatch-opt.selected { border: 1.5px solid var(--gold); background: rgba(212,175,55,0.2); color: var(--gold-light); font-weight: bold; }
-    .text-input, .select-input {
-      width: 100%; padding: 10px 12px; border-radius: 10px;
-      border: 1px solid var(--gold-dim); background: rgba(0,0,0,0.35);
-      color: var(--text-main); font-family: inherit; font-size: 13px;
-    }
-
-    /* Bag Items */
-    .bag-item {
-      display: flex; justify-content: space-between; align-items: center; gap: 10px;
-      padding: 10px 0; border-bottom: 1px solid var(--gold-dim);
-    }
-    .bag-item:last-child { border-bottom: none; }
-    .remove-btn {
-      background: transparent; border: 1px solid var(--gold-dim); color: var(--text-muted);
-      border-radius: 8px; padding: 4px 8px; font-size: 10px; cursor: pointer;
-    }
-
-    /* VIP Pass */
-    .vip-card {
-      border: 2px solid var(--gold); border-radius: 16px;
-      background: linear-gradient(145deg, rgba(212,175,55,0.18), rgba(15,2,5,0.92));
-      padding: 18px; text-align: center; box-shadow: 0 12px 30px rgba(0,0,0,0.55);
-    }
-    .vip-banner-wrap { display: none; margin: -18px -18px 14px -18px; border-bottom: 1px solid var(--gold); border-radius: 14px 14px 0 0; overflow: hidden; }
-    .vip-banner-wrap img { width: 100%; max-height: 180px; object-fit: cover; display: block; }
-    .vip-id { font-size: 18px; letter-spacing: 2.5px; color: var(--gold-light); font-weight: bold; margin: 10px 0; }
-
-    /* Footer */
-    .club-footer {
-      text-align: center; font-size: 10px; letter-spacing: 1.2px;
-      color: var(--gold); padding: 18px 10px 8px; opacity: 0.9;
-    }
-
-    /* Bottom Navigation */
-    .bottom-nav {
-      position: fixed; bottom: 0; left: 0; right: 0;
-      background: rgba(24, 3, 7, 0.97);
-      border-top: 1.5px solid var(--gold);
-      display: flex; justify-content: space-around;
-      padding: 8px 4px 10px; z-index: 999;
-    }
-    body.emerald-theme .bottom-nav { background: rgba(3, 22, 15, 0.97); }
-    .nav-btn {
-      background: none; border: none; color: var(--text-muted);
-      font-family: inherit; font-size: 10px; letter-spacing: 0.5px;
-      display: flex; flex-direction: column; align-items: center; gap: 3px;
-      cursor: pointer; flex: 1;
-    }
-    .nav-btn .nav-icon { font-size: 16px; color: var(--gold); }
-    .nav-btn.active { color: var(--gold-light); font-weight: bold; }
-
-    /* Toast */
-    .toast {
-      position: fixed; top: 18px; left: 50%; transform: translateX(-50%);
-      background: var(--gold); color: #2a040a;
-      padding: 10px 18px; border-radius: 24px; font-size: 12px; font-weight: bold;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.6); z-index: 2000;
+    #splash-video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.45;
       display: none;
+    }
+    .splash-crest {
+      position: relative;
+      z-index: 2;
+      width: 124px;
+      height: 124px;
+      margin-bottom: 18px;
+      animation: pulseGold 3.5s infinite ease-in-out;
+    }
+    @keyframes pulseGold {
+      0%, 100% { transform: scale(1); filter: drop-shadow(0 0 12px rgba(212,175,55,0.45)); }
+      50% { transform: scale(1.06); filter: drop-shadow(0 0 28px rgba(245,215,127,0.85)); }
+    }
+    .splash-title {
+      position: relative;
+      z-index: 2;
+      font-size: clamp(1.3rem, 3.2vw, 2.2rem);
+      letter-spacing: 0.22em;
+      color: var(--gold-bright);
+      text-transform: uppercase;
+      margin: 0 0 8px;
+    }
+    .splash-sub {
+      position: relative;
+      z-index: 2;
+      font-size: 0.85rem;
+      letter-spacing: 0.32em;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      margin-bottom: 26px;
+    }
+    .splash-bar-wrap {
+      position: relative;
+      z-index: 2;
+      width: min(380px, 80vw);
+      height: 4px;
+      background: rgba(212, 175, 55, 0.2);
+      border-radius: 99px;
+      overflow: hidden;
+      margin-bottom: 22px;
+    }
+    .splash-bar-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--gold), var(--gold-bright));
+      transition: width linear;
+    }
+    .splash-controls {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      gap: 10px;
+    }
+
+    /* === LAYOUT SHELL === */
+    .app-shell {
+      display: grid;
+      grid-template-columns: 1fr;
+      min-height: 100vh;
+    }
+    @media (min-width: 960px) {
+      .app-shell {
+        grid-template-columns: var(--sidebar-w) 1fr;
+      }
+      .app-shell.collapsed {
+        grid-template-columns: 0px 1fr;
+      }
+      .app-shell.collapsed .sidebar {
+        transform: translateX(-100%);
+        opacity: 0;
+        pointer-events: none;
+      }
+    }
+
+    /* === SIDEBAR === */
+    .sidebar {
+      background: linear-gradient(180deg, var(--bg-card), var(--bg-deep));
+      border-right: 1px solid var(--gold-soft);
+      padding: 20px 16px 84px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      transition: transform 0.3s ease, opacity 0.25s ease;
+    }
+    @media (min-width: 960px) {
+      .sidebar {
+        position: sticky;
+        top: 0;
+        height: 100vh;
+        overflow-y: auto;
+        padding-bottom: 24px;
+      }
+    }
+    .brand-box {
+      border: 1px solid var(--gold-soft);
+      border-radius: 14px;
+      padding: 14px;
+      background: rgba(0,0,0,0.22);
+      text-align: center;
+    }
+    .brand-box h1 {
+      margin: 0;
+      font-size: 1rem;
+      letter-spacing: 0.14em;
+      color: var(--gold-bright);
+    }
+    .brand-box p {
+      margin: 4px 0 0;
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      color: var(--text-muted);
+    }
+
+    .mini-cinema {
+      border: 1px solid var(--gold-soft);
+      border-radius: 14px;
+      padding: 12px;
+      background: rgba(0,0,0,0.28);
+    }
+    .mini-cinema-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+    .mini-cinema video, .mini-cinema canvas {
+      width: 100%;
+      height: 175px;
+      object-fit: cover;
+      border-radius: 10px;
+      background: #0d0103;
+      border: 1px solid var(--gold-soft);
+      display: block;
+    }
+    .cinema-controls {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
+      margin-top: 8px;
+    }
+
+    .nav-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .nav-btn {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--gold-soft);
+      color: var(--text-main);
+      padding: 11px 14px;
+      border-radius: 11px;
+      text-align: left;
+      font-family: inherit;
+      font-size: 0.88rem;
+      letter-spacing: 0.06em;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .nav-btn:hover, .nav-btn.active {
+      background: rgba(212, 175, 55, 0.16);
+      border-color: var(--gold);
+      color: var(--gold-bright);
+    }
+
+    /* === BUTTONS & INPUTS === */
+    .btn {
+      background: rgba(212, 175, 55, 0.14);
+      border: 1px solid var(--gold-soft);
+      color: var(--gold-bright);
+      padding: 7px 12px;
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 0.78rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .btn:hover {
+      border-color: var(--gold);
+      background: rgba(212, 175, 55, 0.26);
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, #d4af37, #b38b22);
+      color: #1a0207;
+      font-weight: bold;
+      border: none;
+    }
+    .input, select {
+      background: rgba(0, 0, 0, 0.35);
+      border: 1px solid var(--gold-soft);
+      color: var(--text-main);
+      padding: 8px 12px;
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 0.85rem;
+    }
+
+    /* === MAIN STAGE === */
+    .main-stage {
+      padding: 22px 24px 90px;
+      max-width: 1320px;
+      width: 100%;
+      margin: 0 auto;
+    }
+    .topbar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--gold-soft);
+      margin-bottom: 22px;
+    }
+    .panel { display: none; }
+    .panel.active { display: block; }
+
+    /* === 13 DEPARTMENTS GRID === */
+    .dept-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+      gap: 14px;
+    }
+    .card {
+      background: linear-gradient(160deg, var(--bg-elevated), var(--bg-card));
+      border: 1px solid var(--gold-soft);
+      border-radius: 14px;
+      padding: 16px;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+    .card:hover {
+      transform: translateY(-2px);
+      border-color: var(--gold);
+    }
+    .dept-num {
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      color: var(--gold);
+    }
+    .card h3 {
+      margin: 6px 0;
+      font-size: 1rem;
+      color: var(--gold-bright);
+    }
+    .card p {
+      margin: 0;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.45;
+    }
+
+    /* === DROPZONE & MEDIA GRIDS === */
+    .dropzone {
+      border: 2px dashed var(--gold-soft);
+      border-radius: 16px;
+      padding: 26px 18px;
+      text-align: center;
+      background: rgba(0, 0, 0, 0.22);
+      cursor: pointer;
+      margin-bottom: 18px;
+      transition: border-color 0.2s ease, background 0.2s ease;
+    }
+    .dropzone:hover, .dropzone.dragover {
+      border-color: var(--gold);
+      background: rgba(212, 175, 55, 0.08);
+    }
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 18px;
+      align-items: center;
+    }
+    .media-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 16px;
+    }
+    .media-card {
+      background: var(--bg-card);
+      border: 1px solid var(--gold-soft);
+      border-radius: 14px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .media-thumb {
+      width: 100%;
+      height: 170px;
+      object-fit: cover;
+      background: #100104;
+      cursor: pointer;
+    }
+    .media-body {
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      flex: 1;
+    }
+    .media-title {
+      font-size: 0.92rem;
+      color: var(--gold-bright);
+      font-weight: bold;
+    }
+    .media-meta {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+    .media-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: auto;
+    }
+
+    /* === MODAL / LIGHTBOX === */
+    .modal {
+      position: fixed;
+      inset: 0;
+      z-index: 9500;
+      background: rgba(10, 1, 3, 0.92);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .modal.open { display: flex; }
+    .modal-box {
+      background: var(--bg-card);
+      border: 1px solid var(--gold);
+      border-radius: 16px;
+      max-width: 920px;
+      width: 100%;
+      max-height: 92vh;
+      overflow-y: auto;
+      padding: 20px;
+    }
+    .modal-box img, .modal-box video {
+      width: 100%;
+      max-height: 60vh;
+      object-fit: contain;
+      border-radius: 10px;
+      background: #000;
     }
   </style>
 </head>
 <body>
-  <div id="toast" class="toast"></div>
-  <input type="file" id="photoPicker" accept="image/*" style="display:none" />
 
-  <div class="container">
-    <!-- Top Header -->
-    <div class="top-bar">
-      <div class="brand-left">
-        <div class="crest-badge">
-          <img src="atelier-icon.png" alt="MM" onerror="this.style.display='none'; this.parentElement.innerHTML='&#9650;';" />
-        </div>
-        <div>
-          <div class="brand-title">MEVUNAI MOMENT™</div>
-          <div class="brand-sub">FLAGSHIP COUTURE &amp; ATELIER</div>
-        </div>
-      </div>
-      <button type="button" class="theme-btn" id="themeToggleBtn">Emerald Silk</button>
+  <!-- === 7.5s CINEMATIC SPLASH INTRO === -->
+  <div id="splash-intro">
+    <video id="splash-video" muted playsinline></video>
+    <svg class="splash-crest" viewBox="0 0 120 120" fill="none">
+      <polygon points="60,10 112,102 8,102" stroke="#f5d77f" stroke-width="2.5" fill="rgba(212,175,55,0.12)" />
+      <polygon points="60,26 96,92 24,92" stroke="#d4af37" stroke-width="1.4" fill="none" />
+      <ellipse cx="60" cy="64" rx="18" ry="10" stroke="#f5d77f" stroke-width="2" />
+      <circle cx="60" cy="64" r="4.5" fill="#f5d77f" />
+    </svg>
+    <h2 class="splash-title">Mevunai Moment™ Country Club, Inc ®</h2>
+    <div class="splash-sub">Sovereign Private Sanctuary · 13 Departments · v27</div>
+    <div class="splash-bar-wrap">
+      <div class="splash-bar-fill" id="splash-bar"></div>
     </div>
-
-    <!-- Hero Banner -->
-    <div class="hero-card">
-      <div class="hero-img-wrap" id="heroBannerWrap">
-        <img src="banner-hero.png" alt="M'M countryclub.inc" onload="document.getElementById('heroBannerWrap').style.display='block'; document.getElementById('heroFallback').style.display='none';" onerror="this.parentElement.style.display='none';" />
-      </div>
-      <div class="hero-fallback" id="heroFallback">
-        <div class="hero-tag">&#9650; EYE OF HORUS &bull; M'M™ COUNTRYCLUB.INC &#9650;</div>
-        <div class="hero-heading">FLAGSHIP COUTURE &amp; ATELIER</div>
-        <div class="hero-desc">Bespoke Sovereign Tailoring, Armored Motorsport Gear, Haute Horlogerie &amp; Gala Couture</div>
-      </div>
-    </div>
-
-    <!-- VIEW 1: LOOKBOOK -->
-    <div id="view-lookbook" class="view-section active">
-      <div class="pill-row" id="categoryPills">
-        <button type="button" class="pill-btn active" data-cat="All">All Collections</button>
-        <button type="button" class="pill-btn" data-cat="Tailoring">Tailoring &amp; Moto</button>
-        <button type="button" class="pill-btn" data-cat="Horology">Horology</button>
-        <button type="button" class="pill-btn" data-cat="Golf">Golf &amp; Club</button>
-        <button type="button" class="pill-btn" data-cat="Gala">Evening Gala</button>
-        <button type="button" class="pill-btn" data-cat="Accessories">Accessories</button>
-      </div>
-      <div class="product-grid" id="productGrid"></div>
-    </div>
-
-    <!-- VIEW 2: BESPOKE CUSTOMIZER -->
-    <div id="view-bespoke" class="view-section">
-      <div class="panel-card">
-        <div class="panel-title">1325 BESPOKE COMMISSION</div>
-        <div class="panel-sub">Configure your custom garment with our Master Tailor</div>
-
-        <label class="field-label">Select Silhouette</label>
-        <select id="bespokeSilhouette" class="select-input">
-          <option value="Sovereign Circuit Velvet Moto Jacket ($6,400)">Sovereign Circuit Velvet Moto Jacket — $6,400</option>
-          <option value="1325 Sacred Geometry Gala Overcoat ($7,800)">1325 Sacred Geometry Gala Overcoat — $7,800</option>
-          <option value="MMCC Armored Superbike Racing Suit ($9,200)">MMCC Armored Superbike Racing Suit — $9,200</option>
-          <option value="Sovereign Draped Silk Evening Gown ($8,900)">Sovereign Draped Silk Evening Gown — $8,900</option>
-        </select>
-
-        <label class="field-label">Primary Textile</label>
-        <div class="swatch-row" id="fabricSwatches">
-          <button type="button" class="swatch-opt selected" data-val="Royal Crimson Silk">Royal Crimson Silk</button>
-          <button type="button" class="swatch-opt" data-val="Forest Emerald Velvet">Forest Emerald Velvet</button>
-          <button type="button" class="swatch-opt" data-val="Ivory Gala Satin">Ivory Gala Satin</button>
-        </div>
-
-        <label class="field-label">Gold Circuit &amp; Crest Embroidery</label>
-        <div class="swatch-row" id="goldSwatches">
-          <button type="button" class="swatch-opt selected" data-val="24K Full Circuit Matrix">24K Full Circuit Matrix</button>
-          <button type="button" class="swatch-opt" data-val="Eye of Horus Lapel Crest">Eye of Horus Lapel Crest</button>
-          <button type="button" class="swatch-opt" data-val="Minimalist Gold Piping">Minimalist Gold Piping</button>
-        </div>
-
-        <label class="field-label">Custom Interior Monogram</label>
-        <input type="text" id="bespokeMonogram" class="text-input" placeholder="e.g., FOUNDER • MEMB. 001" maxlength="28" />
-
-        <label class="field-label">Tailoring Size / Fit</label>
-        <select id="bespokeSize" class="select-input">
-          <option value="Bespoke Master Measurement (In-Suite / Virtual)">Bespoke Master Measurement (In-Suite / Virtual)</option>
-          <option value="EU 48 / US 38 — Tailored">EU 48 / US 38 — Tailored</option>
-          <option value="EU 50 / US 40 — Tailored">EU 50 / US 40 — Tailored</option>
-          <option value="EU 52 / US 42 — Tailored">EU 52 / US 42 — Tailored</option>
-          <option value="FR 36 / US 4 — Couture">FR 36 / US 4 — Couture</option>
-          <option value="FR 38 / US 6 — Couture">FR 38 / US 6 — Couture</option>
-        </select>
-
-        <div style="margin-top: 16px;">
-          <button type="button" class="btn-gold" id="addBespokeBtn">Add Bespoke Commission to Bag</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- VIEW 3: CONCIERGE ORDER BAG -->
-    <div id="view-bag" class="view-section">
-      <div class="panel-card">
-        <div class="panel-title">CONCIERGE ORDER BAG</div>
-        <div class="panel-sub">Private courier delivery or in-suite fitting at the Clubhouse</div>
-        <div id="bagList"></div>
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-top:14px; padding-top:12px; border-top:1px solid var(--gold);">
-          <span style="font-size:12px; letter-spacing:1px; color:var(--gold);">ESTIMATED TOTAL</span>
-          <span id="bagTotal" style="font-size:18px; font-weight:bold; color:var(--gold-light);">$0</span>
-        </div>
-        <div style="margin-top:14px;">
-          <button type="button" class="btn-gold" id="submitOrderBtn">Dispatch Order to Head Tailor</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- VIEW 4: SOVEREIGN WARDROBE VIP PASS -->
-    <div id="view-pass" class="view-section">
-      <div class="vip-card">
-        <div class="vip-banner-wrap" id="passBannerWrap">
-          <img src="banner-pass.png" alt="Flagship Couture & Atelier" onload="document.getElementById('passBannerWrap').style.display='block';" onerror="this.parentElement.style.display='none';" />
-        </div>
-        <div style="font-size:10px; letter-spacing:2px; color:var(--gold);">&#9650; SOVEREIGN WARDROBE CIRCLE &#9650;</div>
-        <div style="font-size:18px; color:var(--gold-light); margin-top:4px; font-weight:bold;" id="passMemberName">FOUNDER SOVEREIGN</div>
-        <div class="vip-id" id="passMemberId">MMCC-ATELIER-1325-001</div>
-        <div style="font-size:11px; color:var(--text-muted); line-height:1.5; margin-bottom:14px;">
-          Priority Private Atelier Fittings &bull; 24K Bespoke Archive Access &bull; Worldwide Diplomatic Garment Courier
-        </div>
-        <div style="text-align:left; border-top:1px solid var(--gold-dim); padding-top:12px;">
-          <label class="field-label" style="margin-top:0;">Customize Pass Holder Name</label>
-          <input type="text" id="editMemberName" class="text-input" placeholder="Enter Member Name" />
-          <button type="button" class="btn-outline" id="savePassBtn" style="width:100%; margin-top:10px;">Update Wardrobe Pass</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="club-footer">
-      mevunai Moment™ Country Club, Inc &reg; &bull; M'M™ countryclub.inc
+    <div class="splash-controls">
+      <button class="btn" onclick="playGoldChime()">🔊 Gold Chime</button>
+      <button class="btn btn-primary" onclick="closeSplash()">Enter Sovereign Portal ➔</button>
     </div>
   </div>
 
-  <!-- Bottom Navigation -->
-  <nav class="bottom-nav">
-    <button type="button" class="nav-btn active" data-view="lookbook">
-      <span class="nav-icon">&#9670;</span>
-      <span>Lookbook</span>
-    </button>
-    <button type="button" class="nav-btn" data-view="bespoke">
-      <span class="nav-icon">&#9998;</span>
-      <span>Bespoke</span>
-    </button>
-    <button type="button" class="nav-btn" data-view="bag">
-      <span class="nav-icon">&#9733;</span>
-      <span id="navBagLabel">Bag (0)</span>
-    </button>
-    <button type="button" class="nav-btn" data-view="pass">
-      <span class="nav-icon">&#9813;</span>
-      <span>VIP Pass</span>
-    </button>
-  </nav>
+  <div class="app-shell" id="app-shell">
+    <!-- === LEFT SIDEBAR === -->
+    <aside class="sidebar">
+      <div class="brand-box">
+        <h1>MMCC SOVEREIGN</h1>
+        <p>MEVUNAI MOMENT™ · EST. 24K</p>
+      </div>
+
+      <!-- Mini Cinema Player -->
+      <div class="mini-cinema">
+        <div class="mini-cinema-header">
+          <span id="now-playing-label">RA 109 GOLD MOTION</span>
+          <span id="reel-counter">0 / 0</span>
+        </div>
+        <canvas id="visualizer-canvas" width="280" height="175"></canvas>
+        <video id="sidebar-video" style="display:none;" playsinline controls></video>
+        <div class="cinema-controls">
+          <button class="btn" onclick="prevReel()" title="Previous">⏮</button>
+          <button class="btn" onclick="nextReel()" title="Next">⏭</button>
+          <button class="btn" id="loop-btn" onclick="toggleLoop()">🔁 Loop</button>
+          <button class="btn" onclick="openTheatre()">⛶ Full</button>
+        </div>
+      </div>
+
+      <!-- Primary Navigation -->
+      <nav class="nav-list">
+        <button class="nav-btn active" data-tab="depts" onclick="switchTab('depts', this)">🏛 13 Sovereign Departments</button>
+        <button class="nav-btn" data-tab="art" onclick="switchTab('art', this)">🎨 Private Art Gallery</button>
+        <button class="nav-btn" data-tab="videos" onclick="switchTab('videos', this)">🎬 Video Library Vault</button>
+        <button class="nav-btn" data-tab="valet" onclick="switchTab('valet', this)">🚁 Valet & Private Hangar</button>
+        <button class="nav-btn" data-tab="vip" onclick="switchTab('vip', this)">👑 Founder's VIP Key</button>
+      </nav>
+
+      <div style="margin-top:auto; display:flex; flex-direction:column; gap:8px;">
+        <button class="btn" onclick="toggleTheme()">🌿 Toggle Silk / Emerald</button>
+        <button class="btn" onclick="launchSplash()">✨ Replay Cinema Intro</button>
+      </div>
+    </aside>
+
+    <!-- === MAIN STAGE === -->
+    <main class="main-stage">
+      <div class="topbar">
+        <div style="display:flex; align-items:center; gap:10px;">
+          <button class="btn" onclick="document.getElementById('app-shell').classList.toggle('collapsed')">☰ Sidebar</button>
+          <strong style="letter-spacing:0.12em; color:var(--gold-bright);">SOVEREIGN CONCIERGE DESK</strong>
+        </div>
+        <div style="font-size:0.8rem; color:var(--text-muted);">Offline IndexedDB Vault Active · v27</div>
+      </div>
+
+      <!-- TAB 1: 13 DEPARTMENTS -->
+      <section id="tab-depts" class="panel active">
+        <h2 style="color:var(--gold-bright); margin-top:0;">🏛 The 13 Sovereign Departments</h2>
+        <div class="dept-grid" id="dept-grid"></div>
+      </section>
+
+      <!-- TAB 2: SELF-UPLOAD PRIVATE ART GALLERY -->
+      <section id="tab-art" class="panel">
+        <div style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:12px; margin-bottom:14px;">
+          <h2 style="color:var(--gold-bright); margin:0;">🎨 Private Art & Couture Gallery</h2>
+          <button class="btn btn-primary" onclick="startSlideshow()">▶ Start Gallery Slideshow</button>
+        </div>
+
+        <div class="dropzone" id="art-dropzone" onclick="document.getElementById('art-input').click()">
+          <div style="font-size:1.5rem; margin-bottom:6px;">🖼️</div>
+          <strong style="color:var(--gold-bright);">Tap or Drag & Drop Artworks & Couture Photos Here</strong>
+          <p style="margin:6px 0 0; font-size:0.8rem; color:var(--text-muted);">Supports JPG, PNG, WEBP, GIF · Stored privately offline on your device</p>
+          <input type="file" id="art-input" accept="image/*" multiple hidden onchange="handleArtUpload(this.files)" />
+        </div>
+
+        <div class="toolbar">
+          <input type="text" id="art-search" class="input" placeholder="Search title or artist..." oninput="renderArtGallery()" />
+          <select id="art-filter" onchange="renderArtGallery()">
+            <option value="ALL">All Collections</option>
+            <option value="FAV">★ Favorites Only</option>
+            <option value="Couture & Fashion">Couture & Fashion</option>
+            <option value="Fine Art & Oil">Fine Art & Oil</option>
+            <option value="24K Jewelry & Objects">24K Jewelry & Objects</option>
+            <option value="Architecture & Estates">Architecture & Estates</option>
+            <option value="Private Archive">Private Archive</option>
+          </select>
+          <select id="art-upload-cat" title="Default collection for new uploads">
+            <option value="Couture & Fashion">Upload to: Couture & Fashion</option>
+            <option value="Fine Art & Oil">Upload to: Fine Art & Oil</option>
+            <option value="24K Jewelry & Objects">Upload to: 24K Jewelry & Objects</option>
+            <option value="Architecture & Estates">Upload to: Architecture & Estates</option>
+            <option value="Private Archive">Upload to: Private Archive</option>
+          </select>
+        </div>
+
+        <div class="media-grid" id="art-grid"></div>
+      </section>
+
+      <!-- TAB 3: VIDEO LIBRARY VAULT -->
+      <section id="tab-videos" class="panel">
+        <div style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:12px; margin-bottom:14px;">
+          <h2 style="color:var(--gold-bright); margin:0;">🎬 Sovereign Video Library Vault</h2>
+          <div style="display:flex; align-items:center; gap:8px;">
+            <label style="font-size:0.8rem; color:var(--text-muted);">Intro Length:</label>
+            <select id="intro-duration-select" onchange="saveIntroDuration(this.value)">
+              <option value="5000">5.0 Seconds</option>
+              <option value="7500" selected>7.5 Seconds (Default)</option>
+              <option value="10000">10.0 Seconds</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="dropzone" id="video-dropzone" onclick="document.getElementById('video-input').click()">
+          <div style="font-size:1.5rem; margin-bottom:6px;">🎞️</div>
+          <strong style="color:var(--gold-bright);">Tap or Drag & Drop Reels (.MP4, .WEBM, .MOV)</strong>
+          <p style="margin:6px 0 0; font-size:0.8rem; color:var(--text-muted);">Saves offline to your Vault · Set any reel as your Custom Launch Intro</p>
+          <input type="file" id="video-input" accept="video/*" multiple hidden onchange="handleVideoUpload(this.files)" />
+        </div>
+
+        <div class="toolbar">
+          <input type="text" id="video-search" class="input" placeholder="Search video library..." oninput="renderVideoLibrary()" />
+          <select id="video-filter" onchange="renderVideoLibrary()">
+            <option value="ALL">All Reels</option>
+            <option value="FAV">★ Favorites</option>
+            <option value="Cinema Reels">Cinema Reels</option>
+            <option value="Art & Couture">Art & Couture</option>
+            <option value="Valet & Jets">Valet & Jets</option>
+            <option value="VIP Events">VIP Events</option>
+          </select>
+          <select id="video-upload-cat">
+            <option value="Cinema Reels">Upload to: Cinema Reels</option>
+            <option value="Art & Couture">Upload to: Art & Couture</option>
+            <option value="Valet & Jets">Upload to: Valet & Jets</option>
+            <option value="VIP Events">Upload to: VIP Events</option>
+          </select>
+        </div>
+
+        <div class="media-grid" id="video-grid"></div>
+      </section>
+
+      <!-- TAB 4: VALET & HANGAR -->
+      <section id="tab-valet" class="panel">
+        <h2 style="color:var(--gold-bright); margin-top:0;">🚁 Valet Garage & Private Tarmac Hangar</h2>
+        <div class="toolbar">
+          <input type="text" id="fleet-name" class="input" placeholder="Aircraft Tail # or Coach Model..." />
+          <select id="fleet-type">
+            <option value="Private Jet">✈️ Private Jet</option>
+            <option value="Chauffeur Coach">🚘 Chauffeur Coach</option>
+            <option value="Yacht Tender">🛥️ Yacht Tender</option>
+          </select>
+          <button class="btn btn-primary" onclick="addFleetLog()">+ Log Arrival</button>
+        </div>
+        <div class="dept-grid" id="fleet-list"></div>
+      </section>
+
+      <!-- TAB 5: VIP PASS -->
+      <section id="tab-vip" class="panel">
+        <h2 style="color:var(--gold-bright); margin-top:0;">👑 Founder's Sovereign Key</h2>
+        <div class="card" style="max-width:460px; border:1px solid var(--gold); background:linear-gradient(135deg,#3a0712,#160105);">
+          <div class="dept-num">MEVUNAI MOMENT™ COUNTRY CLUB, INC ®</div>
+          <h3 style="font-size:1.3rem; margin:10px 0;">SOVEREIGN FOUNDER PASS</h3>
+          <p id="vip-holder-display" style="color:var(--gold-bright); font-size:1rem; margin-bottom:12px;">MEMBER: FOUNDER · TIER INFINITE</p>
+          <input type="text" id="vip-name-input" class="input" style="width:100%; margin-bottom:10px;" placeholder="Customize Member Name..." oninput="document.getElementById('vip-holder-display').textContent = 'MEMBER: ' + (this.value.toUpperCase() || 'FOUNDER · TIER INFINITE')" />
+          <div style="font-size:0.75rem; color:var(--text-muted);">ALL-ACCESS CLEARANCE · 13 SUITES · PRIVATE TARMAC · ART VAULT</div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- === ART LIGHTBOX MODAL === -->
+  <div class="modal" id="art-modal">
+    <div class="modal-box">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+        <strong style="color:var(--gold-bright);" id="modal-art-header">Artwork Curator View</strong>
+        <div style="display:flex; gap:8px;">
+          <button class="btn" onclick="stepLightbox(-1)">◀ Prev</button>
+          <button class="btn" onclick="stepLightbox(1)">Next ▶</button>
+          <button class="btn" onclick="closeArtModal()">✕ Close</button>
+        </div>
+      </div>
+      <img id="modal-art-img" src="" alt="Artwork" />
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:14px;">
+        <input type="text" id="edit-art-title" class="input" placeholder="Artwork Title" />
+        <input type="text" id="edit-art-artist" class="input" placeholder="Artist / Fashion House" />
+        <select id="edit-art-cat">
+          <option value="Couture & Fashion">Couture & Fashion</option>
+          <option value="Fine Art & Oil">Fine Art & Oil</option>
+          <option value="24K Jewelry & Objects">24K Jewelry & Objects</option>
+          <option value="Architecture & Estates">Architecture & Estates</option>
+          <option value="Private Archive">Private Archive</option>
+        </select>
+        <input type="text" id="edit-art-notes" class="input" placeholder="Curator notes or provenance..." />
+      </div>
+      <div style="display:flex; gap:10px; margin-top:12px;">
+        <button class="btn btn-primary" onclick="saveArtMetadata()">💾 Save Curator Details</button>
+        <a id="download-art-link" class="btn" download="artwork.png">⬇ Download Copy</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- === THEATRE MODAL === -->
+  <div class="modal" id="theatre-modal">
+    <div class="modal-box">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+        <strong style="color:var(--gold-bright);" id="theatre-title">Sovereign Cinema Theatre</strong>
+        <button class="btn" onclick="closeTheatre()">✕ Exit Theatre</button>
+      </div>
+      <video id="theatre-video" controls playsinline></video>
+    </div>
+  </div>
 
   <script>
-    (function() {
-      var products = [
-        {
-          id: "look1",
-          cat: "Tailoring",
-          name: "Sovereign Circuit Silk-Velvet Moto Jacket",
-          price: 6400,
-          img: "look1.png",
-          desc: "Heavyweight royal crimson silk-velvet moto jacket tailored with 24k gold circuit-matrix embroidery and Eye of Horus lapel pyramids."
-        },
-        {
-          id: "look2",
-          cat: "Tailoring",
-          name: "Emerald Matrix Turtleneck & Continent Chain",
-          price: 4200,
-          img: "look2.png",
-          desc: "Forest emerald crushed velvet turtleneck traced in gold circuit lines, paired with the 24k brushed-gold Africa medallion chain."
-        },
-        {
-          id: "look3",
-          cat: "Tailoring",
-          name: "1325 Sacred Geometry Gala Overcoat",
-          price: 7800,
-          img: "look3.png",
-          desc: "Double-breasted ceremonial evening overcoat in draped crimson silk-velvet with brushed-gold crest buttons and cuff filigree."
-        },
-        {
-          id: "look4",
-          cat: "Tailoring",
-          name: "MMCC Armored Superbike Racing Jacket",
-          price: 8500,
-          img: "look4.png",
-          desc: "Track-certified emerald and crimson leather racing shell reinforced with brushed-gold shoulder armor plates and circuit piping."
-        },
-        {
-          id: "look5",
-          cat: "Horology",
-          name: "Pharaoh Chronograph Watch (18k Gold & Crimson)",
-          price: 18500,
-          img: "look5.png",
-          desc: "Octagonal brushed 18k gold case housing a crimson sunray circuit dial, RA date aperture, and 3D Pyramid Eye of Horus at 12 o'clock."
-        },
-        {
-          id: "look6",
-          cat: "Golf",
-          name: "Championship Tour Golf Bag (MEMB. 001)",
-          price: 5600,
-          img: "look6.png",
-          desc: "Full-grain forest emerald pebble-leather tour staff bag with gold sacred-geometry quilting, engraved brass tag, and 1-3-5 headcovers."
-        },
-        {
-          id: "look7",
-          cat: "Gala",
-          name: "Sovereign Crimson Silk Draped Evening Gown",
-          price: 8900,
-          img: "look7.png",
-          desc: "Floor-sweeping draped crimson silk couture gown sculpted with a 24k gold circuit-embroidered corset waist and Eye of Horus clasp."
-        },
-        {
-          id: "look8",
-          cat: "Accessories",
-          name: "Emerald Weekender, Velvet Loafers & Aviators",
-          price: 6900,
-          img: "look8.png",
-          desc: "Three-piece travel ensemble: emerald pebble-leather weekender duffle, crimson velvet Eye of Horus slippers, and 24k gold circuit aviators."
-        }
-      ];
+    /* === 13 DEPARTMENTS DATA === */
+    const DEPARTMENTS = [
+      ["01", "Sovereign Reception & Concierge", "24/7 diplomatic arrival desk, private itinerary curation, and member clearance."],
+      ["02", "Haute Couture & Atelier Salon", "Bespoke tailoring, archival runway fittings, and private trunk showings."],
+      ["03", "Fine Art & Antiquities Vault", "Museum-grade climate-controlled gallery and private acquisition advisory."],
+      ["04", "Private Aviation & Helipad", "Direct tarmac transfers, Gulfstream charter dispatch, and customs clearance."],
+      ["05", "Grand Horology & 24K Jewels", "Rare timepiece restoration, high-jewelry commissions, and vault custody."],
+      ["06", "Gastronomy & Vintage Cellar", "Michelin-caliber tasting rooms and rare pre-phylloxera wine holdings."],
+      ["07", "Wellness, Spa & Longevity", "Thermal hydrotherapy suites, cellular recovery, and holistic sanctuaries."],
+      ["08", "Equestrian & Polo Grounds", "Championship stables, private thoroughbred boarding, and seasonal matches."],
+      ["09", "Yachting & Marina Club", "Deep-water superyacht berths, Mediterranean tenders, and maritime provisioning."],
+      ["10", "Cinema & Acoustic Screening", "Private 35mm/4K Dolby screening room and live chamber performances."],
+      ["11", "Sovereign Library & Archives", "First-edition manuscripts, quiet study rotundas, and diplomatic salons."],
+      ["12", "Estate & Philanthropy Office", "Family office governance, global foundation grants, and legacy planning."],
+      ["13", "Midnight Cigar & Cognac Lounge", "Hand-rolled private reserves, rare cognac decanters, and rooftop terrace."]
+    ];
 
-      var activeCat = "All";
-      var bag = [];
-      var customPhotos = {};
-      var swapTargetId = null;
+    document.getElementById('dept-grid').innerHTML = DEPARTMENTS.map(([num, title, desc]) => `
+      <div class="card">
+        <div class="dept-num">SUITE ${num}</div>
+        <h3>${title}</h3>
+        <p>${desc}</p>
+      </div>
+    `).join('');
 
+    /* === INDEXEDDB SETUP (VIDEOS + ARTWORK) === */
+    let db;
+    const DB_NAME = 'MMCC_Sovereign_Vault_v27';
+    const request = indexedDB.open(DB_NAME, 1);
+    request.onupgradeneeded = (e) => {
+      const database = e.target.result;
+      if (!database.objectStoreNames.contains('videos')) {
+        database.createObjectStore('videos', { keyPath: 'id', autoIncrement: true });
+      }
+      if (!database.objectStoreNames.contains('artworks')) {
+        database.createObjectStore('artworks', { keyPath: 'id', autoIncrement: true });
+      }
+    };
+    request.onsuccess = (e) => {
+      db = e.target.result;
+      renderVideoLibrary();
+      renderArtGallery();
+      launchSplash();
+    };
+
+    /* === 7.5s CINEMATIC SPLASH INTRO === */
+    let splashTimer = null;
+    function getIntroDuration() {
+      return parseInt(localStorage.getItem('mmcc_intro_duration') || '7500', 10);
+    }
+    function saveIntroDuration(val) {
+      localStorage.setItem('mmcc_intro_duration', val);
+    }
+    const savedDur = localStorage.getItem('mmcc_intro_duration');
+    if (savedDur) document.getElementById('intro-duration-select').value = savedDur;
+
+    function launchSplash() {
+      const splash = document.getElementById('splash-intro');
+      const bar = document.getElementById('splash-bar');
+      const dur = getIntroDuration();
+      splash.classList.remove('hidden');
+      bar.style.transition = 'none';
+      bar.style.width = '0%';
+
+      const customIntroId = localStorage.getItem('mmcc_custom_intro_id');
+      const splashVid = document.getElementById('splash-video');
+      if (customIntroId && db) {
+        const tx = db.transaction('videos', 'readonly');
+        tx.objectStore('videos').get(Number(customIntroId)).onsuccess = (ev) => {
+          const item = ev.target.result;
+          if (item && item.blob) {
+            splashVid.src = URL.createObjectURL(item.blob);
+            splashVid.style.display = 'block';
+            splashVid.play().catch(() => {});
+          }
+        };
+      } else {
+        splashVid.style.display = 'none';
+      }
+
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          bar.style.transition = `width ${dur}ms linear`;
+          bar.style.width = '100%';
+        });
+      });
+
+      clearTimeout(splashTimer);
+      splashTimer = setTimeout(closeSplash, dur);
+    }
+
+    function closeSplash() {
+      clearTimeout(splashTimer);
+      document.getElementById('splash-intro').classList.add('hidden');
+      const splashVid = document.getElementById('splash-video');
+      splashVid.pause();
+    }
+
+    function playGoldChime() {
       try {
-        var savedPhotos = localStorage.getItem("mmcc_atelier_photos_v1");
-        if (savedPhotos) customPhotos = JSON.parse(savedPhotos);
-        var savedBag = localStorage.getItem("mmcc_atelier_bag_v1");
-        if (savedBag) bag = JSON.parse(savedBag);
-        var savedName = localStorage.getItem("mmcc_atelier_member_v1");
-        if (savedName) {
-          document.getElementById("passMemberName").textContent = savedName;
-          document.getElementById("editMemberName").value = savedName;
-        }
+        const ctx = new (window.AudioContext || window.webkitAudioContext)();
+        [261.63, 329.63, 392.00, 523.25].forEach((freq, i) => {
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          osc.type = 'sine';
+          osc.frequency.value = freq;
+          gain.gain.setValueAtTime(0.001, ctx.currentTime + i * 0.14);
+          gain.gain.exponentialRampToValueAtTime(0.08, ctx.currentTime + i * 0.14 + 0.08);
+          gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + i * 0.14 + 1.8);
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+          osc.start(ctx.currentTime + i * 0.14);
+          osc.stop(ctx.currentTime + i * 0.14 + 1.9);
+        });
       } catch (e) {}
+    }
 
-      function showToast(msg) {
-        var t = document.getElementById("toast");
-        t.textContent = msg;
-        t.style.display = "block";
-        clearTimeout(window._toastTimer);
-        window._toastTimer = setTimeout(function() { t.style.display = "none"; }, 2600);
+    /* === GOLD MOTION VISUALIZER === */
+    const canvas = document.getElementById('visualizer-canvas');
+    const cctx = canvas.getContext('2d');
+    let phase = 0;
+    function drawVisualizer() {
+      phase += 0.025;
+      cctx.fillStyle = '#120104';
+      cctx.fillRect(0, 0, canvas.width, canvas.height);
+      cctx.strokeStyle = 'rgba(212, 175, 55, 0.55)';
+      cctx.lineWidth = 1.5;
+      const cx = canvas.width / 2;
+      const cy = canvas.height / 2 + 8;
+      for (let i = 0; i < 4; i++) {
+        const s = 32 + i * 14 + Math.sin(phase + i) * 4;
+        cctx.beginPath();
+        cctx.moveTo(cx, cy - s);
+        cctx.lineTo(cx + s * 1.15, cy + s * 0.7);
+        cctx.lineTo(cx - s * 1.15, cy + s * 0.7);
+        cctx.closePath();
+        cctx.stroke();
       }
+      requestAnimationFrame(drawVisualizer);
+    }
+    drawVisualizer();
 
-      function saveBag() {
-        try { localStorage.setItem("mmcc_atelier_bag_v1", JSON.stringify(bag)); } catch (e) {}
-        document.getElementById("navBagLabel").textContent = "Bag (" + bag.length + ")";
-      }
+    /* === NAVIGATION & THEME === */
+    function switchTab(tabId, btn) {
+      document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+      document.getElementById('tab-' + tabId).classList.add('active');
+      document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+    }
+    function toggleTheme() {
+      document.body.classList.toggle('theme-emerald');
+    }
 
-      function renderProducts() {
-        var grid = document.getElementById("productGrid");
-        grid.innerHTML = "";
-        var filtered = products.filter(function(p) {
-          return activeCat === "All" || p.cat === activeCat;
-        });
+    /* === ART GALLERY FUNCTIONS === */
+    let cachedArtworks = [];
+    let activeLightboxIndex = 0;
+    let slideshowInterval = null;
 
-        filtered.forEach(function(p) {
-          var card = document.createElement("div");
-          card.className = "product-card";
-
-          var imgSrc = customPhotos[p.id] || p.img;
-
-          var mediaDiv = document.createElement("div");
-          mediaDiv.className = "product-media";
-
-          var badge = document.createElement("span");
-          badge.className = "cat-badge";
-          badge.textContent = p.cat;
-          mediaDiv.appendChild(badge);
-
-          var imgEl = document.createElement("img");
-          imgEl.src = imgSrc;
-          imgEl.alt = p.name;
-          imgEl.onerror = function() {
-            this.style.display = "none";
-            var ph = document.createElement("div");
-            ph.className = "media-placeholder";
-            ph.innerHTML = '<span class="emb-icon">&#9650;</span><strong>' + p.name + '</strong><br/><span>Upload ' + p.img + ' or tap Swap Photo</span>';
-            mediaDiv.insertBefore(ph, swapBtn);
-          };
-          mediaDiv.appendChild(imgEl);
-
-          var swapBtn = document.createElement("button");
-          swapBtn.type = "button";
-          swapBtn.className = "swap-btn";
-          swapBtn.textContent = "Swap Photo";
-          swapBtn.onclick = function() {
-            swapTargetId = p.id;
-            document.getElementById("photoPicker").click();
-          };
-          mediaDiv.appendChild(swapBtn);
-
-          var bodyDiv = document.createElement("div");
-          bodyDiv.className = "product-body";
-          bodyDiv.innerHTML =
-            '<div class="product-top">' +
-              '<div class="product-name">' + p.name + '</div>' +
-              '<div class="product-price">$' + p.price.toLocaleString() + '</div>' +
-            '</div>' +
-            '<div class="product-desc">' + p.desc + '</div>';
-
-          var actDiv = document.createElement("div");
-          actDiv.className = "card-actions";
-
-          var addBtn = document.createElement("button");
-          addBtn.type = "button";
-          addBtn.className = "btn-gold";
-          addBtn.textContent = "Add to Order Bag";
-          addBtn.onclick = function() {
-            bag.push({ name: p.name, price: p.price, note: "Standard Atelier Edition" });
-            saveBag();
-            renderBag();
-            showToast("Added to Concierge Bag");
-          };
-
-          var fitBtn = document.createElement("button");
-          fitBtn.type = "button";
-          fitBtn.className = "btn-outline";
-          fitBtn.textContent = "Bespoke";
-          fitBtn.onclick = function() {
-            switchView("bespoke");
-          };
-
-          actDiv.appendChild(addBtn);
-          actDiv.appendChild(fitBtn);
-          bodyDiv.appendChild(actDiv);
-
-          card.appendChild(mediaDiv);
-          card.appendChild(bodyDiv);
-          grid.appendChild(card);
-        });
-      }
-
-      function renderBag() {
-        var list = document.getElementById("bagList");
-        var totalEl = document.getElementById("bagTotal");
-        if (!bag.length) {
-          list.innerHTML = '<div style="font-size:12px; color:var(--text-muted); padding:14px 0;">Your Concierge Order Bag is currently empty. Select garments from the Lookbook or configure a Bespoke Commission.</div>';
-          totalEl.textContent = "$0";
-          return;
-        }
-        var total = 0;
-        list.innerHTML = "";
-        bag.forEach(function(item, idx) {
-          total += item.price;
-          var row = document.createElement("div");
-          row.className = "bag-item";
-          row.innerHTML =
-            '<div>' +
-              '<div style="font-size:13px; color:var(--gold-light); font-weight:bold;">' + item.name + '</div>' +
-              '<div style="font-size:11px; color:var(--text-muted);">' + item.note + ' &bull; $' + item.price.toLocaleString() + '</div>' +
-            '</div>';
-          var rem = document.createElement("button");
-          rem.type = "button";
-          rem.className = "remove-btn";
-          rem.textContent = "Remove";
-          rem.onclick = function() {
-            bag.splice(idx, 1);
-            saveBag();
-            renderBag();
-          };
-          row.appendChild(rem);
-          list.appendChild(row);
-        });
-        totalEl.textContent = "$" + total.toLocaleString();
-      }
-
-      function switchView(viewName) {
-        var sections = document.querySelectorAll(".view-section");
-        for (var i = 0; i < sections.length; i++) sections[i].classList.remove("active");
-        var target = document.getElementById("view-" + viewName);
-        if (target) target.classList.add("active");
-
-        var navBtns = document.querySelectorAll(".nav-btn");
-        for (var j = 0; j < navBtns.length; j++) {
-          navBtns[j].classList.toggle("active", navBtns[j].getAttribute("data-view") === viewName);
-        }
-        window.scrollTo(0, 0);
-      }
-
-      // Navigation listeners
-      var navButtons = document.querySelectorAll(".nav-btn");
-      for (var i = 0; i < navButtons.length; i++) {
-        navButtons[i].addEventListener("click", function() {
-          switchView(this.getAttribute("data-view"));
-        });
-      }
-
-      // Category Pill listeners
-      var pillButtons = document.querySelectorAll(".pill-btn");
-      for (var k = 0; k < pillButtons.length; k++) {
-        pillButtons[k].addEventListener("click", function() {
-          for (var m = 0; m < pillButtons.length; m++) pillButtons[m].classList.remove("active");
-          this.classList.add("active");
-          activeCat = this.getAttribute("data-cat");
-          renderProducts();
-        });
-      }
-
-      // Theme toggle
-      document.getElementById("themeToggleBtn").addEventListener("click", function() {
-        var isEmerald = document.body.classList.toggle("emerald-theme");
-        this.textContent = isEmerald ? "Crimson Silk" : "Emerald Silk";
-      });
-
-      // Swatch selectors
-      function bindSwatches(containerId) {
-        var opts = document.getElementById(containerId).querySelectorAll(".swatch-opt");
-        for (var i = 0; i < opts.length; i++) {
-          opts[i].addEventListener("click", function() {
-            for (var j = 0; j < opts.length; j++) opts[j].classList.remove("selected");
-            this.classList.add("selected");
+    function handleArtUpload(files) {
+      if (!files || !files.length || !db) return;
+      const category = document.getElementById('art-upload-cat').value;
+      Array.from(files).forEach(file => {
+        const reader = new FileReader();
+        reader.onload = () => {
+          const tx = db.transaction('artworks', 'readwrite');
+          tx.objectStore('artworks').add({
+            title: file.name.replace(/\.[^/.]+$/, ''),
+            artist: 'Private Collection',
+            category,
+            notes: '',
+            favorite: false,
+            dataUrl: reader.result,
+            createdAt: Date.now()
           });
-        }
-      }
-      bindSwatches("fabricSwatches");
-      bindSwatches("goldSwatches");
-
-      // Add Bespoke item
-      document.getElementById("addBespokeBtn").addEventListener("click", function() {
-        var sil = document.getElementById("bespokeSilhouette").value;
-        var priceMatch = sil.match(/\$([0-9,]+)/);
-        var price = priceMatch ? parseInt(priceMatch[1].replace(/,/g, ""), 10) : 6500;
-        var fabric = document.querySelector("#fabricSwatches .selected").getAttribute("data-val");
-        var gold = document.querySelector("#goldSwatches .selected").getAttribute("data-val");
-        var mono = document.getElementById("bespokeMonogram").value.trim() || "Standard Crest";
-        var size = document.getElementById("bespokeSize").value;
-
-        bag.push({
-          name: sil.split(" (")[0],
-          price: price,
-          note: fabric + " | " + gold + " | Monogram: " + mono + " | " + size
-        });
-        saveBag();
-        renderBag();
-        showToast("Bespoke Commission Added");
-        switchView("bag");
-      });
-
-      // Submit Order
-      document.getElementById("submitOrderBtn").addEventListener("click", function() {
-        if (!bag.length) {
-          showToast("Your Concierge Bag is empty");
-          return;
-        }
-        bag = [];
-        saveBag();
-        renderBag();
-        showToast("Order Dispatched to Master Tailor");
-      });
-
-      // Save Pass Name
-      document.getElementById("savePassBtn").addEventListener("click", function() {
-        var val = document.getElementById("editMemberName").value.trim();
-        if (val) {
-          document.getElementById("passMemberName").textContent = val.toUpperCase();
-          try { localStorage.setItem("mmcc_atelier_member_v1", val.toUpperCase()); } catch (e) {}
-          showToast("Wardrobe Pass Updated");
-        }
-      });
-
-      // Photo Picker
-      document.getElementById("photoPicker").addEventListener("change", function(evt) {
-        var file = evt.target.files && evt.target.files[0];
-        if (!file || !swapTargetId) return;
-        var reader = new FileReader();
-        reader.onload = function(e) {
-          customPhotos[swapTargetId] = e.target.result;
-          try { localStorage.setItem("mmcc_atelier_photos_v1", JSON.stringify(customPhotos)); } catch (err) {}
-          renderProducts();
-          showToast("Lookbook Photo Updated");
+          tx.oncomplete = () => renderArtGallery();
         };
         reader.readAsDataURL(file);
-        this.value = "";
       });
+    }
 
-      // Register Network-First Service Worker
-      if ("serviceWorker" in navigator) {
-        window.addEventListener("load", function() {
-          navigator.serviceWorker.register("sw.js").catch(function() {});
+    function renderArtGallery() {
+      if (!db) return;
+      const search = document.getElementById('art-search').value.toLowerCase();
+      const filter = document.getElementById('art-filter').value;
+      const tx = db.transaction('artworks', 'readonly');
+      tx.objectStore('artworks').getAll().onsuccess = (e) => {
+        let items = e.target.result || [];
+        items.sort((a, b) => b.createdAt - a.createdAt);
+        items = items.filter(item => {
+          const matchText = item.title.toLowerCase().includes(search) || item.artist.toLowerCase().includes(search);
+          if (!matchText) return false;
+          if (filter === 'ALL') return true;
+          if (filter === 'FAV') return item.favorite;
+          return item.category === filter;
         });
-      }
+        cachedArtworks = items;
+        const grid = document.getElementById('art-grid');
+        if (!items.length) {
+          grid.innerHTML = `<div class="card" style="grid-column:1/-1; text-align:center;">No artworks in this view yet. Upload photos above to curate your private gallery.</div>`;
+          return;
+        }
+        grid.innerHTML = items.map((item, idx) => `
+          <div class="media-card">
+            <img class="media-thumb" src="${item.dataUrl}" alt="${item.title}" onclick="openArtModal(${idx})" />
+            <div class="media-body">
+              <div class="media-title">${item.title}</div>
+              <div class="media-meta">${item.artist} · ${item.category}</div>
+              <div class="media-actions">
+                <button class="btn" onclick="openArtModal(${idx})">🔍 Inspect</button>
+                <button class="btn" onclick="toggleArtFav(${item.id})">${item.favorite ? '★' : '☆'}</button>
+                <button class="btn" onclick="deleteArt(${item.id})">🗑</button>
+              </div>
+            </div>
+          </div>
+        `).join('');
+      };
+    }
 
-      saveBag();
-      renderProducts();
-      renderBag();
-    })();
+    function toggleArtFav(id) {
+      const tx = db.transaction('artworks', 'readwrite');
+      const store = tx.objectStore('artworks');
+      store.get(id).onsuccess = (e) => {
+        const item = e.target.result;
+        if (item) {
+          item.favorite = !item.favorite;
+          store.put(item);
+        }
+      };
+      tx.oncomplete = () => renderArtGallery();
+    }
+
+    function deleteArt(id) {
+      const tx = db.transaction('artworks', 'readwrite');
+      tx.objectStore('artworks').delete(id);
+      tx.oncomplete = () => renderArtGallery();
+    }
+
+    function openArtModal(idx) {
+      if (!cachedArtworks.length) return;
+      activeLightboxIndex = (idx + cachedArtworks.length) % cachedArtworks.length;
+      const item = cachedArtworks[activeLightboxIndex];
+      document.getElementById('modal-art-img').src = item.dataUrl;
+      document.getElementById('modal-art-header').textContent = `${item.title} (${activeLightboxIndex + 1} of ${cachedArtworks.length})`;
+      document.getElementById('edit-art-title').value = item.title;
+      document.getElementById('edit-art-artist').value = item.artist;
+      document.getElementById('edit-art-cat').value = item.category;
+      document.getElementById('edit-art-notes').value = item.notes || '';
+      document.getElementById('download-art-link').href = item.dataUrl;
+      document.getElementById('download-art-link').download = `${item.title}.png`;
+      document.getElementById('art-modal').classList.add('open');
+    }
+
+    function stepLightbox(dir) {
+      openArtModal(activeLightboxIndex + dir);
+    }
+
+    function closeArtModal() {
+      clearInterval(slideshowInterval);
+      document.getElementById('art-modal').classList.remove('open');
+    }
+
+    function startSlideshow() {
+      if (!cachedArtworks.length) return;
+      openArtModal(0);
+      clearInterval(slideshowInterval);
+      slideshowInterval = setInterval(() => stepLightbox(1), 4500);
+    }
+
+    function saveArtMetadata() {
+      const item = cachedArtworks[activeLightboxIndex];
+      if (!item) return;
+      item.title = document.getElementById('edit-art-title').value || item.title;
+      item.artist = document.getElementById('edit-art-artist').value || 'Private Collection';
+      item.category = document.getElementById('edit-art-cat').value;
+      item.notes = document.getElementById('edit-art-notes').value;
+      const tx = db.transaction('artworks', 'readwrite');
+      tx.objectStore('artworks').put(item);
+      tx.oncomplete = () => {
+        renderArtGallery();
+        openArtModal(activeLightboxIndex);
+      };
+    }
+
+    /* === VIDEO LIBRARY VAULT === */
+    let cachedVideos = [];
+    let currentReelIdx = 0;
+    let isLooping = false;
+
+    function handleVideoUpload(files) {
+      if (!files || !files.length || !db) return;
+      const category = document.getElementById('video-upload-cat').value;
+      Array.from(files).forEach(file => {
+        const tx = db.transaction('videos', 'readwrite');
+        tx.objectStore('videos').add({
+          title: file.name.replace(/\.[^/.]+$/, ''),
+          category,
+          favorite: false,
+          sizeMB: (file.size / (1024 * 1024)).toFixed(1),
+          blob: file,
+          createdAt: Date.now()
+        });
+        tx.oncomplete = () => renderVideoLibrary();
+      });
+    }
+
+    function renderVideoLibrary() {
+      if (!db) return;
+      const search = document.getElementById('video-search').value.toLowerCase();
+      const filter = document.getElementById('video-filter').value;
+      const tx = db.transaction('videos', 'readonly');
+      tx.objectStore('videos').getAll().onsuccess = (e) => {
+        let items = e.target.result || [];
+        items.sort((a, b) => b.createdAt - a.createdAt);
+        items = items.filter(v => {
+          if (!v.title.toLowerCase().includes(search)) return false;
+          if (filter === 'ALL') return true;
+          if (filter === 'FAV') return v.favorite;
+          return v.category === filter;
+        });
+        cachedVideos = items;
+        document.getElementById('reel-counter').textContent = `${items.length ? currentReelIdx + 1 : 0} / ${items.length}`;
+        const grid = document.getElementById('video-grid');
+        const introId = localStorage.getItem('mmcc_custom_intro_id');
+        if (!items.length) {
+          grid.innerHTML = `<div class="card" style="grid-column:1/-1; text-align:center;">Your Video Library Vault is empty. Upload .MP4 or .WEBM reels above.</div>`;
+          return;
+        }
+        grid.innerHTML = items.map((v, idx) => {
+          const url = URL.createObjectURL(v.blob);
+          const isIntro = String(v.id) === String(introId);
+          return `
+            <div class="media-card">
+              <video class="media-thumb" src="${url}" muted preload="metadata" onclick="playReel(${idx})"></video>
+              <div class="media-body">
+                <div class="media-title">${v.title}</div>
+                <div class="media-meta">${v.category} · ${v.sizeMB} MB</div>
+                <div class="media-actions">
+                  <button class="btn btn-primary" onclick="playReel(${idx})">▶ Play</button>
+                  <button class="btn" onclick="setCustomIntro(${v.id})">${isIntro ? '✨ Active Intro' : '✨ Intro'}</button>
+                  <button class="btn" onclick="toggleVideoFav(${v.id})">${v.favorite ? '★' : '☆'}</button>
+                  <button class="btn" onclick="deleteVideo(${v.id})">🗑</button>
+                </div>
+              </div>
+            </div>
+          `;
+        }).join('');
+      };
+    }
+
+    function playReel(idx) {
+      if (!cachedVideos.length) return;
+      currentReelIdx = (idx + cachedVideos.length) % cachedVideos.length;
+      const v = cachedVideos[currentReelIdx];
+      const sv = document.getElementById('sidebar-video');
+      sv.src = URL.createObjectURL(v.blob);
+      sv.style.display = 'block';
+      sv.loop = isLooping;
+      sv.play().catch(() => {});
+      document.getElementById('visualizer-canvas').style.display = 'none';
+      document.getElementById('now-playing-label').textContent = v.title.toUpperCase();
+      document.getElementById('reel-counter').textContent = `${currentReelIdx + 1} / ${cachedVideos.length}`;
+    }
+
+    function prevReel() { playReel(currentReelIdx - 1); }
+    function nextReel() { playReel(currentReelIdx + 1); }
+    function toggleLoop() {
+      isLooping = !isLooping;
+      document.getElementById('sidebar-video').loop = isLooping;
+      document.getElementById('loop-btn').style.borderColor = isLooping ? 'var(--gold)' : '';
+    }
+
+    function openTheatre() {
+      if (!cachedVideos.length) return;
+      const v = cachedVideos[currentReelIdx];
+      const tv = document.getElementById('theatre-video');
+      tv.src = URL.createObjectURL(v.blob);
+      document.getElementById('theatre-title').textContent = v.title;
+      document.getElementById('theatre-modal').classList.add('open');
+      tv.play().catch(() => {});
+    }
+    function closeTheatre() {
+      const tv = document.getElementById('theatre-video');
+      tv.pause();
+      document.getElementById('theatre-modal').classList.remove('open');
+    }
+
+    function setCustomIntro(id) {
+      const current = localStorage.getItem('mmcc_custom_intro_id');
+      if (String(current) === String(id)) {
+        localStorage.removeItem('mmcc_custom_intro_id');
+      } else {
+        localStorage.setItem('mmcc_custom_intro_id', String(id));
+      }
+      renderVideoLibrary();
+    }
+
+    function toggleVideoFav(id) {
+      const tx = db.transaction('videos', 'readwrite');
+      const store = tx.objectStore('videos');
+      store.get(id).onsuccess = (e) => {
+        const item = e.target.result;
+        if (item) { item.favorite = !item.favorite; store.put(item); }
+      };
+      tx.oncomplete = () => renderVideoLibrary();
+    }
+
+    function deleteVideo(id) {
+      const tx = db.transaction('videos', 'readwrite');
+      tx.objectStore('videos').delete(id);
+      tx.oncomplete = () => renderVideoLibrary();
+    }
+
+    /* === VALET & FLEET LOG === */
+    let fleetLogs = JSON.parse(localStorage.getItem('mmcc_fleet_logs') || '[{"name":"Gulfstream G700 · N109MM","type":"Private Jet","status":"Cleared · Hangar A"},{"name":"Rolls-Royce Phantom VIII","type":"Chauffeur Coach","status":"Staged · Porte-Cochère"}]');
+    function renderFleet() {
+      document.getElementById('fleet-list').innerHTML = fleetLogs.map((f, i) => `
+        <div class="card">
+          <div class="dept-num">${f.type.toUpperCase()}</div>
+          <h3>${f.name}</h3>
+          <p>${f.status}</p>
+          <button class="btn" style="margin-top:10px;" onclick="fleetLogs.splice(${i},1);localStorage.setItem('mmcc_fleet_logs',JSON.stringify(fleetLogs));renderFleet();">Release</button>
+        </div>
+      `).join('');
+    }
+    function addFleetLog() {
+      const name = document.getElementById('fleet-name').value.trim();
+      if (!name) return;
+      fleetLogs.unshift({ name, type: document.getElementById('fleet-type').value, status: 'Active · Sovereign Tarmac' });
+      localStorage.setItem('mmcc_fleet_logs', JSON.stringify(fleetLogs));
+      document.getElementById('fleet-name').value = '';
+      renderFleet();
+    }
+    renderFleet();
+
+    /* === DRAG & DROP BINDINGS === */
+    [['art-dropzone', handleArtUpload], ['video-dropzone', handleVideoUpload]].forEach(([id, fn]) => {
+      const el = document.getElementById(id);
+      el.addEventListener('dragover', (e) => { e.preventDefault(); el.classList.add('dragover'); });
+      el.addEventListener('dragleave', () => el.classList.remove('dragover'));
+      el.addEventListener('drop', (e) => {
+        e.preventDefault();
+        el.classList.remove('dragover');
+        fn(e.dataTransfer.files);
+      });
+    });
+
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('./sw.js').catch(() => {});
+    }
   </script>
 </body>
 </html>

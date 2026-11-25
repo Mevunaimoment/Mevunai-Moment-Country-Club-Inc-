@@ -1,14 +1,13 @@
 {
-  "name": "Mevunai Moment™ Flagship Couture & Atelier",
-  "short_name": "MMCC Atelier",
-  "description": "Mevunai Moment™ Country Club, Inc ® Flagship Couture & Atelier — M'M™ countryclub.inc",
+  "name": "Mevunai Moment™ Country Club, Inc ®",
+  "short_name": "MMCC Sovereign",
   "start_url": "./index.html",
   "display": "standalone",
-  "background_color": "#2a040a",
-  "theme_color": "#3a060e",
+  "background_color": "#1a0207",
+  "theme_color": "#2b040c",
   "icons": [
     {
-      "src": "atelier-icon.png",
+      "src": "master-icon.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
